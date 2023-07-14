@@ -3,26 +3,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
 
-class ForgotPasswordTabsWidget extends StatefulWidget {
-  const ForgotPasswordTabsWidget({
+class ForgotPasswordTabsFormSection extends StatefulWidget {
+  const ForgotPasswordTabsFormSection({
     super.key,
-    required this.formkey,
+    required this.formKey,
   });
 
-  final GlobalKey<FormState> formkey;
+  final GlobalKey<FormState> formKey;
 
   @override
-  State<ForgotPasswordTabsWidget> createState() =>
-      _ForgotPasswordTabsWidgetState();
+  State<ForgotPasswordTabsFormSection> createState() =>
+      _ForgotPasswordTabsFormSectionState();
 }
 
-class _ForgotPasswordTabsWidgetState extends State<ForgotPasswordTabsWidget>
+class _ForgotPasswordTabsFormSectionState
+    extends State<ForgotPasswordTabsFormSection>
     with SingleTickerProviderStateMixin {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  late final TabController tabController;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    phoneController.dispose();
+    tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TabController tabController = TabController(length: 2, vsync: this);
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
+    tabController = TabController(length: 2, vsync: this);
 
     return Column(
       children: [
@@ -68,7 +79,7 @@ class _ForgotPasswordTabsWidgetState extends State<ForgotPasswordTabsWidget>
           width: MediaQuery.of(context).size.width,
           height: 65.h,
           child: Form(
-            key: widget.formkey,
+            key: widget.formKey,
             child: TabBarView(
               controller: tabController,
               children: [
@@ -76,7 +87,8 @@ class _ForgotPasswordTabsWidgetState extends State<ForgotPasswordTabsWidget>
                   validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please Enter an Email';
-                    } if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                    }
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                         .hasMatch(value)) {
                       return 'Please a valid Email';
                     } else {
@@ -93,7 +105,8 @@ class _ForgotPasswordTabsWidgetState extends State<ForgotPasswordTabsWidget>
                   validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please Enter Phone No';
-                    } if (value.length != 11) {
+                    }
+                    if (value.length != 11) {
                       return 'Please Enter Valid Phone No';
                     } else {
                       return null;

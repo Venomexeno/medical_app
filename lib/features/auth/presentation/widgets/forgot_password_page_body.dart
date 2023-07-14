@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/features/auth/presentation/widgets/forgot_password_tabs_widget.dart';
+import 'package:medical_app/features/auth/presentation/widgets/forgot_password_tabs_form_section.dart';
 import 'package:medical_app/features/auth/presentation/widgets/auth_button_widget.dart';
 
 class ForgotPasswordPageBody extends StatelessWidget {
   ForgotPasswordPageBody({super.key});
 
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,12 @@ class ForgotPasswordPageBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            ForgotPasswordTabsWidget(formkey: _formkey),
+            ForgotPasswordTabsFormSection(formKey: _formKey),
             const SizedBox(height: 32),
             AuthButtonWidget(
               text: 'Reset Password',
               onPressed: () {
-                if (_formkey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
                   Navigator.pushNamed(context, AppRoutes.verificationCodePageRoute);
                 } else {
                   return;
