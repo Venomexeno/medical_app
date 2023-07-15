@@ -6,12 +6,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+    return SafeArea(
+      child: Scaffold(
+        body: HomePageBody(),
       ),
-      body: HomePageBody(),
     );
   }
 }
