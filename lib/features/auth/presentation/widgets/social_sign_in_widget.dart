@@ -32,9 +32,12 @@ class SocialSignInWidget extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.center,
-              child: Text(text,style: const TextStyle(
-                fontWeight: FontWeight.w700
-              ),),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
         ],

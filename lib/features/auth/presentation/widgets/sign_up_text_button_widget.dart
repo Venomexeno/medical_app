@@ -17,29 +17,17 @@ class SignUpTextButtonWidget extends StatelessWidget {
           'Don’t have an account?',
           style: TextStyle(
             fontSize: 14.sp,
-            shadows: const [
-              Shadow(
-                offset: Offset(0, 4),
-                blurRadius: 14,
-                color: AppColors.grey,
-              )
-            ],
             color: AppColors.grey,
           ),
         ),
         TextButton(
-          child: Text('Sign Up',
-              style: TextStyle(
-                fontSize: 14.sp,
-                shadows: const [
-                  Shadow(
-                    offset: Offset(0, 5),
-                    blurRadius: 14,
-                    color: AppColors.grey,
-                  )
-                ],
-                color: AppColors.green,
-              )),
+          child: Text(
+            'Sign Up',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: AppColors.green,
+            ),
+          ),
           onPressed: () {
             Navigator.pushNamed(context, AppRoutes.signUpPageRoute);
           },

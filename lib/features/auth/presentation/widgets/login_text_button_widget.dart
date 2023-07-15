@@ -17,29 +17,17 @@ class LoginTextButtonWidget extends StatelessWidget {
           'Already have an account?',
           style: TextStyle(
             fontSize: 14.sp,
-            shadows: const [
-              Shadow(
-                offset: Offset(0, 4),
-                blurRadius: 14,
-                color: AppColors.grey,
-              )
-            ],
             color: AppColors.grey,
           ),
         ),
         TextButton(
-          child: Text('Sign In',
-              style: TextStyle(
-                fontSize: 14.sp,
-                shadows: const [
-                  Shadow(
-                    offset: Offset(0, 5),
-                    blurRadius: 14,
-                    color: AppColors.grey,
-                  )
-                ],
-                color: AppColors.green,
-              )),
+          child: Text(
+            'Sign In',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: AppColors.green,
+            ),
+          ),
           onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
                 context, AppRoutes.loginPageRoute, (route) => false);

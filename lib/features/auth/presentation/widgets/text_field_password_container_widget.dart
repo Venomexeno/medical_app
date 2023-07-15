@@ -60,18 +60,22 @@ class _TextFieldPasswordContainerWidgetState
               borderRadius: BorderRadius.circular(40.r)),
           hintText: widget.hintText,
           border: InputBorder.none,
-          suffixIcon: InkWell(
-              onTap: () {
-                setState(() {
-                  isObscureText = !isObscureText;
-                });
-              },
-              child: Icon(
-                  isObscureText ? Icons.visibility_off : Icons.visibility)),
+          suffixIcon: IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: () {
+              setState(() {
+                isObscureText = !isObscureText;
+              });
+            },
+            icon: Icon(
+              isObscureText ? Icons.visibility_off : Icons.visibility,
+            ),
+          ),
           filled: true,
           fillColor: const Color(0xffE5E7EB),
           prefixIcon: Padding(
-            padding: const EdgeInsets.only(left: 24.0,right: 24),
+            padding: const EdgeInsets.only(left: 24.0, right: 24),
             child: UnconstrainedBox(
               child: SvgPicture.asset(
                 width: 32.w,

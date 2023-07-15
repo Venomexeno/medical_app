@@ -4,6 +4,7 @@ import 'package:medical_app/features/auth/presentation/pages/forgot_password_pag
 import 'package:medical_app/features/auth/presentation/pages/login_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/verification_code_page.dart';
+import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
 
 import 'features/auth/presentation/pages/create_new_password_page.dart';
@@ -45,6 +46,12 @@ class OnGenerateRoute {
       case AppRoutes.createNewPasswordPageRoute:
         return MaterialPageRoute(
           builder: (_) => const CreateNewPasswordPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.homePageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const HomePage(),
           settings: settings,
         );
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/auth_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_form_section.dart';
@@ -10,6 +11,7 @@ class LoginPageBody extends StatelessWidget {
   LoginPageBody({super.key});
 
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,10 +27,10 @@ class LoginPageBody extends StatelessWidget {
               text: 'Login',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  print("successful");
-                  return;
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.homePageRoute);
                 } else {
-                  print("UnSuccessfull");
+                  print("UnSuccessful");
                 }
               },
             ),
@@ -81,4 +83,3 @@ class LoginPageBody extends StatelessWidget {
     );
   }
 }
-

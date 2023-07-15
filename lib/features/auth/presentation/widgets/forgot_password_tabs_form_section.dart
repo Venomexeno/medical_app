@@ -19,21 +19,21 @@ class ForgotPasswordTabsFormSection extends StatefulWidget {
 class _ForgotPasswordTabsFormSectionState
     extends State<ForgotPasswordTabsFormSection>
     with SingleTickerProviderStateMixin {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  late final TabController tabController;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  late final TabController _tabController;
 
   @override
   void dispose() {
-    emailController.dispose();
-    phoneController.dispose();
-    tabController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
 
     return Column(
       children: [
@@ -53,7 +53,7 @@ class _ForgotPasswordTabsFormSectionState
             ),
             labelColor: AppColors.green,
             unselectedLabelColor: const Color(0xffA1A8B0),
-            controller: tabController,
+            controller: _tabController,
             tabs: [
               Tab(
                 child: Text(
@@ -77,11 +77,11 @@ class _ForgotPasswordTabsFormSectionState
         const SizedBox(height: 24),
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: 65.h,
+          height: 90.h,
           child: Form(
             key: widget.formKey,
             child: TabBarView(
-              controller: tabController,
+              controller: _tabController,
               children: [
                 TextFieldContainerWidget(
                   validator: (String? value) {
@@ -95,7 +95,7 @@ class _ForgotPasswordTabsFormSectionState
                       return null;
                     }
                   },
-                  controller: emailController,
+                  controller: _emailController,
                   hintText: 'Enter your email',
                   prefixIcon: 'assets/icons/Email.svg',
                   semanticsLabel: 'Email',
@@ -112,7 +112,7 @@ class _ForgotPasswordTabsFormSectionState
                       return null;
                     }
                   },
-                  controller: phoneController,
+                  controller: _phoneController,
                   hintText: 'Enter your phone number',
                   prefixIcon: 'assets/icons/Phone.svg',
                   semanticsLabel: 'Phone',
