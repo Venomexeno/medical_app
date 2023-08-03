@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_page_body.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -17,12 +18,12 @@ class SignUpPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Sign Up',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 16.sp,
           ),
         ),
       ),

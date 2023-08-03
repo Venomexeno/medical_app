@@ -6,5 +6,5 @@ class AppRoutes {
   static const String verificationCodePageRoute = '/verificationCode';
   static const String createNewPasswordPageRoute = '/createNewPassword';
   static const String homePageRoute = '/home';
-
+  static const String topDoctorsRoute = '/topDoctors';
 }

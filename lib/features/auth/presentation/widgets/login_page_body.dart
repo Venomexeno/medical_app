@@ -67,13 +67,19 @@ class LoginPageBody extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             SocialSignInWidget(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                    context, AppRoutes.homePageRoute);
+              },
               text: 'Sign in with Google',
               icon: 'assets/icons/Google.svg',
             ),
             const SizedBox(height: 16),
             SocialSignInWidget(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                    context, AppRoutes.homePageRoute);
+              },
               text: 'Sign in with Facebook',
               icon: 'assets/icons/Facebook.svg',
             ),

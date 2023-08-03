@@ -43,7 +43,7 @@ class _ForgotPasswordTabsFormSectionState
             color: const Color(0xffF9FAFB),
             borderRadius: BorderRadius.circular(100.r),
           ),
-          width: MediaQuery.of(context).size.width,
+          width: double.infinity,
           height: 60.h,
           child: TabBar(
             indicatorWeight: 0,
@@ -76,7 +76,7 @@ class _ForgotPasswordTabsFormSectionState
         ),
         const SizedBox(height: 24),
         SizedBox(
-          width: MediaQuery.of(context).size.width,
+          width: double.infinity,
           height: 90.h,
           child: Form(
             key: widget.formKey,
