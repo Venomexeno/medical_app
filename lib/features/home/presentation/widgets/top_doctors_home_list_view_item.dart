@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/features/home/presentation/widgets/rating_container.dart';
@@ -31,14 +32,18 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            height: 75.h,
-            width: 75.h,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(imageUrl), fit: BoxFit.cover),
-                shape: BoxShape.circle),
+          CachedNetworkImage(
+            imageUrl: imageUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              width: 75.w,
+              height: 75.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
           ),
+
           const SizedBox(height: 18),
           Align(
             alignment: Alignment.centerLeft,
@@ -76,5 +81,3 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
     );
   }
 }
-
-

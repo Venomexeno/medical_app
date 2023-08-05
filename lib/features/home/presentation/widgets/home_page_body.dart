@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/features/home/presentation/widgets/health_article_list_view.dart';
-import 'package:medical_app/features/home/presentation/widgets/menu_item_widget.dart';
+import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
 import 'package:medical_app/features/home/presentation/widgets/search_form_section.dart';
 import 'package:medical_app/features/home/presentation/widgets/section_row.dart';
 import 'package:medical_app/features/home/presentation/widgets/top_doctors_home_list_view.dart';
@@ -38,28 +38,32 @@ class HomePageBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 SearchFormSection(
+                  hintText: 'Search doctor, drugs,articles...',
+                  semanticsLabelText: 'Search',
                   formKey: _formKey,
                 ),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MenuItemWidget(
-                      onPressed: () {},
+                    MenuItemContainer(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.findDoctorsRoute);
+                      },
                       text: 'Doctor',
                       icon: 'assets/icons/Doctor.svg',
                     ),
-                    MenuItemWidget(
+                    MenuItemContainer(
                       onPressed: () {},
                       text: 'Pharmacy',
                       icon: 'assets/icons/Pharmacy.svg',
                     ),
-                    MenuItemWidget(
+                    MenuItemContainer(
                       onPressed: () {},
                       text: 'Hospital',
                       icon: 'assets/icons/Hospital.svg',
                     ),
-                    MenuItemWidget(
+                    MenuItemContainer(
                       onPressed: () {},
                       text: 'Ambulance',
                       icon: 'assets/icons/Ambulance.svg',

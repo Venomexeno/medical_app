@@ -7,4 +7,6 @@ class AppRoutes {
   static const String createNewPasswordPageRoute = '/createNewPassword';
   static const String homePageRoute = '/home';
   static const String topDoctorsRoute = '/topDoctors';
+  static const String findDoctorsRoute = '/findDoctors';
+
 }
