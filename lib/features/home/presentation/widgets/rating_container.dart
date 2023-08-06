@@ -8,7 +8,7 @@ class RatingContainer extends StatelessWidget {
     required this.rating,
   });
 
-  final String rating;
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RatingContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(Icons.star_rounded, color: AppColors.green, size: 17.sp),
-            Text(rating, style: const TextStyle(color: AppColors.green)),
+            Text(rating.toString(), style: const TextStyle(color: AppColors.green)),
           ],
         ),
       ),

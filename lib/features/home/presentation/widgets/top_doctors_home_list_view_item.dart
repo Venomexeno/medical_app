@@ -16,7 +16,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
   final String imageUrl;
   final String name;
   final String specialization;
-  final String rating;
+  final double rating;
 
   @override
   Widget build(BuildContext context) {

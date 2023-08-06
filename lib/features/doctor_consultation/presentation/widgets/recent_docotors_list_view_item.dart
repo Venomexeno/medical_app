@@ -16,14 +16,17 @@ class RecentDoctorsListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CachedNetworkImage(
-          imageUrl: imageUrl,
-          imageBuilder: (context, imageProvider) => Container(
-            width: 80.w,
-            height: 80.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+        GestureDetector(
+          onTap: (){},
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            imageBuilder: (context, imageProvider) => Container(
+              width: 80.w,
+              height: 80.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              ),
             ),
           ),
         ),

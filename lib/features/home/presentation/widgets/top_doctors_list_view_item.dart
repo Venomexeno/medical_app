@@ -18,7 +18,7 @@ class TopDoctorsListViewItem extends StatelessWidget {
   final String imageUrl;
   final String name;
   final String specialization;
-  final String rating;
+  final double rating;
   final int distance;
 
   @override

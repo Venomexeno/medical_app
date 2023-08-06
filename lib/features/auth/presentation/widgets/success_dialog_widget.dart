@@ -23,7 +23,7 @@ class SuccessDialogWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset('assets/icons/Done.svg'),
+            SvgPicture.asset('assets/icons/Surgeon.svg'),
             const SizedBox(height: 40),
             Text(
               'Success',

@@ -43,12 +43,15 @@ class HomePageBody extends StatelessWidget {
                   formKey: _formKey,
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 4,
+                  shrinkWrap: true,
                   children: [
                     MenuItemContainer(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.findDoctorsRoute);
+                        Navigator.pushNamed(
+                            context, AppRoutes.findDoctorsRoute);
                       },
                       text: 'Doctor',
                       icon: 'assets/icons/Doctor.svg',

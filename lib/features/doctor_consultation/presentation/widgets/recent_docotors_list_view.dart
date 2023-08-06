@@ -12,6 +12,7 @@ class RecentDoctorsListView extends StatelessWidget {
     return SizedBox(
       height: 110.h,
       child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return const RecentDoctorsListViewItem(
@@ -21,7 +22,7 @@ class RecentDoctorsListView extends StatelessWidget {
             );
           },
           separatorBuilder: (context, index) => const SizedBox(width: 4),
-          itemCount: 4),
+          itemCount: 5),
     );
   }
 }

@@ -11,14 +11,14 @@ class TopDoctorsListView extends StatelessWidget {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: 100,
+      itemCount: 20,
       separatorBuilder: (context, index) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
         return const TopDoctorsListViewItem(
           imageUrl: 'https://i.ibb.co/m9zqbpW/pexels-cedric-fauntleroy-4270371.png',
           name: 'Mohamed Ibrahim Elsaid',
           specialization: 'Chardiologist',
-          rating: '4.7',
+          rating: 4.5,
           distance: 300,
         );
       },

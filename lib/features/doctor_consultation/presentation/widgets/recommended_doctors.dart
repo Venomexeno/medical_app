@@ -18,7 +18,7 @@ class RecommendedDoctors extends StatelessWidget {
   final String imageUrl;
   final String name;
   final String specialization;
-  final String rating;
+  final double rating;
   final int distance;
 
   @override
@@ -26,12 +26,12 @@ class RecommendedDoctors extends StatelessWidget {
     return Container(
       height: 150.h,
       width: double.infinity,
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xffE8F3F1)),
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(10.r),
       ),
-      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           ClipRRect(
@@ -54,7 +54,6 @@ class RecommendedDoctors extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextScroll(
@@ -76,9 +75,9 @@ class RecommendedDoctors extends StatelessWidget {
                       color: const Color(0xffADADAD),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const Spacer(),
                   const Divider(thickness: 1.5),
-                  const SizedBox(height: 10),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

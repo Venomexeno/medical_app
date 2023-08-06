@@ -14,7 +14,6 @@ class FindDoctorsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
-
       slivers: [
         SliverAppBar(
           iconTheme: const IconThemeData(color: Colors.black),
@@ -53,9 +52,11 @@ class FindDoctorsPageBody extends StatelessWidget {
                   style:
                       TextStyle(fontWeight: FontWeight.w600, fontSize: 18.sp),
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                GridView.count(
+                  shrinkWrap: true,
+                  mainAxisSpacing: 5.h,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 4,
                   children: [
                     MenuItemContainer(
                       onPressed: () {},
@@ -77,25 +78,20 @@ class FindDoctorsPageBody extends StatelessWidget {
                       text: 'Psychiatrist',
                       icon: 'assets/icons/Psychiatrist.svg',
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     MenuItemContainer(
                       onPressed: () {},
-                      text: 'General',
-                      icon: 'assets/icons/Doctor.svg',
+                      text: 'Covid-19',
+                      icon: 'assets/icons/Covid.svg',
                     ),
                     MenuItemContainer(
                       onPressed: () {},
-                      text: 'Lungs',
-                      icon: 'assets/icons/Lungs.svg',
+                      text: 'Surgeon',
+                      icon: 'assets/icons/Surgeon.svg',
                     ),
                     MenuItemContainer(
                       onPressed: () {},
-                      text: 'Dentist',
-                      icon: 'assets/icons/Dentist.svg',
+                      text: 'Cardiologist',
+                      icon: 'assets/icons/Cardiologist.svg',
                     ),
                   ],
                 ),
@@ -112,7 +108,7 @@ class FindDoctorsPageBody extends StatelessWidget {
                 const RecommendedDoctors(
                   name: 'Marcus Horizon',
                   distance: 700,
-                  rating: '4.5',
+                  rating: 4.5,
                   specialization: 'Chardiologist',
                   imageUrl:
                       'https://i.ibb.co/m9zqbpW/pexels-cedric-fauntleroy-4270371.png',
