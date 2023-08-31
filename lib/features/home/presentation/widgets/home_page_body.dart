@@ -51,7 +51,7 @@ class HomePageBody extends StatelessWidget {
                     MenuItemContainer(
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, AppRoutes.findDoctorsRoute);
+                            context, AppRoutes.findDoctorsPageRoute);
                       },
                       text: 'Doctor',
                       icon: 'assets/icons/Doctor.svg',
@@ -87,7 +87,7 @@ class HomePageBody extends StatelessWidget {
                 SectionRow(
                   name: 'Top Doctors',
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.topDoctorsRoute);
+                    Navigator.pushNamed(context, AppRoutes.topDoctorsPageRoute);
                   },
                 ),
                 const TopDoctorsHomeListView(),

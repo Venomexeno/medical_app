@@ -5,6 +5,7 @@ import 'package:medical_app/features/auth/presentation/pages/forgot_password_pag
 import 'package:medical_app/features/auth/presentation/pages/login_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/verification_code_page.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
@@ -57,15 +58,21 @@ class OnGenerateRoute {
           settings: settings,
         );
 
-      case AppRoutes.topDoctorsRoute:
+      case AppRoutes.topDoctorsPageRoute:
         return MaterialPageRoute(
           builder: (_) => const TopDoctorsPage(),
           settings: settings,
         );
 
-      case AppRoutes.findDoctorsRoute:
+      case AppRoutes.findDoctorsPageRoute:
         return MaterialPageRoute(
           builder: (_) => const FindDoctorsPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.doctorDetailPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const DoctorDetailPage(),
           settings: settings,
         );
 
