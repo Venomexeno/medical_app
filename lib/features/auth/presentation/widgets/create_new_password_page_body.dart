@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 import 'package:medical_app/features/auth/presentation/widgets/create_password_form_section.dart';
 import 'package:medical_app/features/auth/presentation/widgets/success_dialog_widget.dart';
 
-import 'auth_button_widget.dart';
 
 class CreateNewPasswordPageBody extends StatelessWidget {
   CreateNewPasswordPageBody({super.key});
@@ -37,7 +37,7 @@ class CreateNewPasswordPageBody extends StatelessWidget {
             const SizedBox(height: 24),
             CreatePasswordFormSection(formKey: _formKey),
             const SizedBox(height: 24),
-            AuthButtonWidget(
+            CustomElevatedButton(
               text: 'Create Password',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

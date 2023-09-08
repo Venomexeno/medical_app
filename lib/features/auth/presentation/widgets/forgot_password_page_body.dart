@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_tabs_form_section.dart';
-import 'package:medical_app/features/auth/presentation/widgets/auth_button_widget.dart';
+
 
 class ForgotPasswordPageBody extends StatelessWidget {
   ForgotPasswordPageBody({super.key});
@@ -36,7 +37,7 @@ class ForgotPasswordPageBody extends StatelessWidget {
             const SizedBox(height: 24),
             ForgotPasswordTabsFormSection(formKey: _formKey),
             const SizedBox(height: 32),
-            AuthButtonWidget(
+            CustomElevatedButton(
               text: 'Reset Password',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

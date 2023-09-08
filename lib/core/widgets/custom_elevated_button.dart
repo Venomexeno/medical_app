@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 
-class AuthButtonWidget extends StatelessWidget {
-  const AuthButtonWidget({
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -17,7 +17,7 @@ class AuthButtonWidget extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
           minimumSize: Size.fromHeight(65.h)),
       onPressed: onPressed,
       child: Text(

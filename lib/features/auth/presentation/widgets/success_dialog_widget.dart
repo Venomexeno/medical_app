@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/features/auth/presentation/widgets/auth_button_widget.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 
 class SuccessDialogWidget extends StatelessWidget {
   const SuccessDialogWidget({
@@ -42,7 +42,7 @@ class SuccessDialogWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            AuthButtonWidget(
+            CustomElevatedButton(
                 text: 'Login',
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(

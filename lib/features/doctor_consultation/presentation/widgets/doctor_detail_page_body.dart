@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/doctor_detail_container.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/widgets/time_picker_container.dart';
 import 'package:readmore/readmore.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 
@@ -59,12 +62,64 @@ class DoctorDetailPageBody extends StatelessWidget {
                 const SizedBox(height: 25),
                 DatePicker(
                   DateTime.now(),
-                  initialSelectedDate: DateTime.now(),
                   selectionColor: AppColors.green,
                   selectedTextColor: Colors.white,
                   daysCount: 7,
                   onDateChange: (date) {},
                 ),
+                const SizedBox(height: 25),
+                const Divider(
+                  thickness: 1.5,
+                  color: Color(0xffE8F3F1),
+                ),
+                GridView.count(
+                  childAspectRatio: 103 / 42,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 15,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 3,
+                  children: const [
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                    TimePickerContainer(
+                      time: '09:00 AM',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                SizedBox(
+                  width: double.infinity,
+                  child: CustomElevatedButton(
+                    onPressed: (){
+                      Navigator.pushNamed(context, AppRoutes.doctorAppointmentBookingPageRoute);
+                    },
+                    text: 'Book Appointment',
+                  )
+                ),
+                const SizedBox(height: 5),
               ],
             ),
           ),

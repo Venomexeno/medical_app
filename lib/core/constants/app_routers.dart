@@ -9,4 +9,5 @@ class AppRoutes {
   static const String topDoctorsPageRoute = '/topDoctors';
   static const String findDoctorsPageRoute = '/findDoctors';
   static const String doctorDetailPageRoute = '/doctorDetail';
+  static const String doctorAppointmentBookingPageRoute = '/doctorAppointmentBooking';
 }

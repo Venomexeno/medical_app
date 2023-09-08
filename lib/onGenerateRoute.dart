@@ -11,6 +11,8 @@ import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
 import 'package:medical_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
 
+import 'features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
+
 
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -73,6 +75,12 @@ class OnGenerateRoute {
       case AppRoutes.doctorDetailPageRoute:
         return MaterialPageRoute(
           builder: (_) => const DoctorDetailPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.doctorAppointmentBookingPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const DoctorAppointmentBookingPage(),
           settings: settings,
         );
 
