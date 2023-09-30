@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 import 'package:medical_app/features/auth/presentation/widgets/create_password_form_section.dart';
-import 'package:medical_app/features/auth/presentation/widgets/success_dialog_widget.dart';
-
 
 class CreateNewPasswordPageBody extends StatelessWidget {
   CreateNewPasswordPageBody({super.key});
@@ -44,8 +44,16 @@ class CreateNewPasswordPageBody extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return const SuccessDialogWidget(
-                          text: 'You have successfully reset your password.');
+                      return CustomAlertDialogWidget(
+                        titleText: 'Success',
+                        descriptionText:
+                            'You have successfully reset your password.',
+                        buttonText: 'Login',
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(context,
+                              AppRoutes.loginPageRoute, (route) => false);
+                        },
+                      );
                     },
                   );
                 } else {

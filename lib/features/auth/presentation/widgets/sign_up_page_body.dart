@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_form_section.dart';
-import 'package:medical_app/features/auth/presentation/widgets/success_dialog_widget.dart';
-
 
 class SignUpPageBody extends StatelessWidget {
   SignUpPageBody({super.key});
@@ -26,8 +26,15 @@ class SignUpPageBody extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return const SuccessDialogWidget(
-                        text: 'Your account has been successfully registered',
+                      return CustomAlertDialogWidget(
+                        titleText: 'Success',
+                        descriptionText:
+                            'Your account has been successfully registered.',
+                        buttonText: 'Login',
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(context,
+                              AppRoutes.loginPageRoute, (route) => false);
+                        },
                       );
                     },
                   );
@@ -44,4 +51,3 @@ class SignUpPageBody extends StatelessWidget {
     );
   }
 }
-

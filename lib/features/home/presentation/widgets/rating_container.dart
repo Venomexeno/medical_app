@@ -20,7 +20,7 @@ class RatingContainer extends StatelessWidget {
       height: 25.h,
       width: 40.w,
       child: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
