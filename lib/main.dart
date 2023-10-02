@@ -23,12 +23,14 @@ class MyApp extends StatelessWidget {
             initialRoute: AppRoutes.onBoardingPageRoute,
             title: 'Flutter Demo',
             theme: ThemeData.light().copyWith(
-              scaffoldBackgroundColor: AppColors.white,
+                scaffoldBackgroundColor: AppColors.white,
                 colorScheme: ThemeData().colorScheme.copyWith(
-                      primary: AppColors.green,
-                    ),
+                  primary: AppColors.green,
+                ),
                 textTheme:
-                    GoogleFonts.interTextTheme(ThemeData.light().textTheme)),
+                GoogleFonts.interTextTheme(ThemeData
+                    .light()
+                    .textTheme)),
             debugShowCheckedModeBanner: false,
           );
         });

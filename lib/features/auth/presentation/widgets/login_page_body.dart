@@ -28,7 +28,7 @@ class LoginPageBody extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.homePageRoute);
+                      context, AppRoutes.rootPageRoute);
                 } else {
                   print("UnSuccessful");
                 }
@@ -69,7 +69,7 @@ class LoginPageBody extends StatelessWidget {
             SocialSignInWidget(
               onPressed: () {
                 Navigator.pushReplacementNamed(
-                    context, AppRoutes.homePageRoute);
+                    context, AppRoutes.rootPageRoute);
               },
               text: 'Sign in with Google',
               icon: 'assets/icons/Google.svg',
@@ -78,7 +78,7 @@ class LoginPageBody extends StatelessWidget {
             SocialSignInWidget(
               onPressed: () {
                 Navigator.pushReplacementNamed(
-                    context, AppRoutes.homePageRoute);
+                    context, AppRoutes.rootPageRoute);
               },
               text: 'Sign in with Facebook',
               icon: 'assets/icons/Facebook.svg',

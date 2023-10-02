@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/features/auth/presentation/pages/create_new_password_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/forgot_password_page.dart';
@@ -8,11 +9,12 @@ import 'package:medical_app/features/auth/presentation/pages/verification_code_p
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
+import 'package:medical_app/features/home/presentation/pages/root_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
 import 'package:medical_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
 
 import 'features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
-
+import 'features/home/presentation/controller/navigation_cubit.dart';
 
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -37,8 +39,7 @@ class OnGenerateRoute {
 
       case AppRoutes.forgotPasswordPageRoute:
         return MaterialPageRoute(
-          builder: (_) =>
-              const ForgotPasswordPage(),
+          builder: (_) => const ForgotPasswordPage(),
           settings: settings,
         );
 
@@ -51,6 +52,13 @@ class OnGenerateRoute {
       case AppRoutes.createNewPasswordPageRoute:
         return MaterialPageRoute(
           builder: (_) => const CreateNewPasswordPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.rootPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<NavigationCubit>(
+              create: (context) => NavigationCubit(), child: const RootPage()),
           settings: settings,
         );
 

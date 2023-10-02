@@ -5,6 +5,7 @@ class AppRoutes {
   static const String forgotPasswordPageRoute = '/forgotPassword';
   static const String verificationCodePageRoute = '/verificationCode';
   static const String createNewPasswordPageRoute = '/createNewPassword';
+  static const String rootPageRoute = '/root';
   static const String homePageRoute = '/home';
   static const String topDoctorsPageRoute = '/topDoctors';
   static const String findDoctorsPageRoute = '/findDoctors';

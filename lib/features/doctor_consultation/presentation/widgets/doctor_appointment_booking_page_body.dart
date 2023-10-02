@@ -172,6 +172,7 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                     SizedBox(
                       width: 200.w,
                       child: CustomElevatedButton(
+                        text: 'Booking',
                         onPressed: () {
                           showDialog(
                             context: context,
@@ -185,7 +186,6 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                             },
                           );
                         },
-                        text: 'Booking',
                       ),
                     ),
                   ],
