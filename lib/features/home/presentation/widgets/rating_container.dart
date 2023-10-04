@@ -13,12 +13,13 @@ class RatingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 3),
       decoration: BoxDecoration(
         color: const Color(0xffE8F3F1),
         borderRadius: BorderRadius.circular(5.r),
       ),
       height: 25.h,
-      width: 40.w,
+      width: 50.w,
       child: Padding(
         padding: const EdgeInsets.all(2),
         child: Row(

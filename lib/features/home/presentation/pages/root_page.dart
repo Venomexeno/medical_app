@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/nav_bar_items.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
 import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/profile/presentation/pages/profile_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({super.key});

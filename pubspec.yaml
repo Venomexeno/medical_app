@@ -59,6 +59,7 @@ dependencies:
   text_scroll: ^0.2.0
   readmore: ^2.2.0
   google_fonts: ^5.1.0
+  autoscale_tabbarview: ^1.0.2
 
 dev_dependencies:
   flutter_test:

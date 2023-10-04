@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/features/home/presentation/widgets/distance_row.dart';
 import 'package:medical_app/features/home/presentation/widgets/rating_container.dart';
 import 'package:text_scroll/text_scroll.dart';
