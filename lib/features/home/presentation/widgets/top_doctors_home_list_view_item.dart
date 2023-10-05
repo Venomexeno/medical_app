@@ -22,7 +22,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, AppRoutes.doctorDetailPageRoute);
       },
       child: Container(
@@ -44,11 +44,11 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
                 height: 75.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
                 ),
               ),
             ),
-
             const SizedBox(height: 18),
             Align(
               alignment: Alignment.centerLeft,

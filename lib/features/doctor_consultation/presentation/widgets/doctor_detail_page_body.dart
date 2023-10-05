@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/doctor_detail_container.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/time_picker_container.dart';
 import 'package:readmore/readmore.dart';
@@ -112,7 +112,7 @@ class DoctorDetailPageBody extends StatelessWidget {
                 const SizedBox(height: 30),
                 SizedBox(
                   width: double.infinity,
-                  child: CustomElevatedButton(
+                  child: CustomElevatedButtonWidget(
                     onPressed: (){
                       Navigator.pushNamed(context, AppRoutes.doctorAppointmentBookingPageRoute);
                     },

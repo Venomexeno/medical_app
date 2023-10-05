@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SectionRow extends StatelessWidget {
-  const SectionRow({
+class CustomSectionRowWidget extends StatelessWidget {
+  const CustomSectionRowWidget({
     super.key,
     required this.name,
     required this.onPressed,

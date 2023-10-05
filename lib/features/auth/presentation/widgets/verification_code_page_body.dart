@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 
 class VerificationCodePageBody extends StatelessWidget {
   const VerificationCodePageBody({super.key});
@@ -36,7 +36,7 @@ class VerificationCodePageBody extends StatelessWidget {
               height: 32.h,
             ),
             const SizedBox(height: 40),
-            CustomElevatedButton(text: 'Verify', onPressed: () {
+            CustomElevatedButtonWidget(text: 'Verify', onPressed: () {
               Navigator.pushNamed(context, AppRoutes.createNewPasswordPageRoute);
             }),
             Row(

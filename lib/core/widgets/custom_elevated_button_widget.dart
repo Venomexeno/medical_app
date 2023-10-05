@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 
-class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
+class CustomElevatedButtonWidget extends StatelessWidget {
+  const CustomElevatedButtonWidget({
     super.key,
     required this.text,
     required this.onPressed,

@@ -12,6 +12,7 @@ import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/root_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
 import 'package:medical_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
+import 'package:medical_app/features/online_pharmacy/presentation/pages/online_pharmacy_page.dart';
 
 import 'features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
 import 'features/home/presentation/controller/navigation_cubit.dart';
@@ -89,6 +90,12 @@ class OnGenerateRoute {
       case AppRoutes.doctorAppointmentBookingPageRoute:
         return MaterialPageRoute(
           builder: (_) => const DoctorAppointmentBookingPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.onlinePharmacyPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const OnlinePharmacyPage(),
           settings: settings,
         );
 

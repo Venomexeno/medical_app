@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 
 class CustomAlertDialogWidget extends StatelessWidget {
   const CustomAlertDialogWidget({
@@ -51,7 +51,7 @@ class CustomAlertDialogWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            CustomElevatedButton(
+            CustomElevatedButtonWidget(
               text: buttonText,
               onPressed: onPressed,
             ),

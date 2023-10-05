@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
@@ -23,7 +23,7 @@ class LoginPageBody extends StatelessWidget {
             LoginFormSection(formKey: _formKey),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
-            CustomElevatedButton(
+            CustomElevatedButtonWidget(
               text: 'Login',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

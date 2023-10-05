@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_details_row.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_doctor_details_container.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_title_row.dart';
@@ -171,7 +171,7 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 200.w,
-                      child: CustomElevatedButton(
+                      child: CustomElevatedButtonWidget(
                         text: 'Booking',
                         onPressed: () {
                           showDialog(

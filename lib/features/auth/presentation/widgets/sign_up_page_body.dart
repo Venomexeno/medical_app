@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button.dart';
+import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_form_section.dart';
 
@@ -20,7 +20,7 @@ class SignUpPageBody extends StatelessWidget {
           children: [
             SignUpFormSection(formKey: _formKey),
             const SizedBox(height: 32),
-            CustomElevatedButton(
+            CustomElevatedButtonWidget(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   showDialog(

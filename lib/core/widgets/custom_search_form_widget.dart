@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
 
-class SearchFormSection extends StatefulWidget {
-  const SearchFormSection({
+class CustomSearchFormWidget extends StatefulWidget {
+  const CustomSearchFormWidget({
     super.key,
     required this.formKey,
     required this.hintText,
@@ -14,10 +14,10 @@ class SearchFormSection extends StatefulWidget {
   final String semanticsLabelText;
 
   @override
-  State<SearchFormSection> createState() => _SearchFormSectionState();
+  State<CustomSearchFormWidget> createState() => _CustomSearchFormWidgetState();
 }
 
-class _SearchFormSectionState extends State<SearchFormSection> {
+class _CustomSearchFormWidgetState extends State<CustomSearchFormWidget> {
   final TextEditingController _searchController = TextEditingController();
 
   @override

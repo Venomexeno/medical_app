@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/recent_docotors_list_view.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/recommended_doctors.dart';
 import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
-import 'package:medical_app/features/home/presentation/widgets/search_form_section.dart';
 
 class FindDoctorsPageBody extends StatelessWidget {
   FindDoctorsPageBody({super.key});
@@ -41,7 +41,7 @@ class FindDoctorsPageBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchFormSection(
+                CustomSearchFormWidget(
                   formKey: _formKey,
                   hintText: 'Find a doctor',
                   semanticsLabelText: 'Search for a doctor',

@@ -1,12 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_banner_container_widget.dart';
+import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
 import 'package:medical_app/features/home/presentation/widgets/health_article_list_view.dart';
 import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
-import 'package:medical_app/features/home/presentation/widgets/search_form_section.dart';
-import 'package:medical_app/features/home/presentation/widgets/section_row.dart';
+import 'package:medical_app/core/widgets/custom_section_row_widget.dart';
 import 'package:medical_app/features/home/presentation/widgets/top_doctors_home_list_view.dart';
 
 class HomePageBody extends StatelessWidget {
@@ -37,10 +37,10 @@ class HomePageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                SearchFormSection(
+                CustomSearchFormWidget(
+                  formKey: _formKey,
                   hintText: 'Search doctor, drugs,articles...',
                   semanticsLabelText: 'Search',
-                  formKey: _formKey,
                 ),
                 const SizedBox(height: 16),
                 GridView.count(
@@ -57,7 +57,10 @@ class HomePageBody extends StatelessWidget {
                       icon: 'assets/icons/Doctor.svg',
                     ),
                     MenuItemContainer(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.onlinePharmacyPageRoute);
+                      },
                       text: 'Pharmacy',
                       icon: 'assets/icons/Pharmacy.svg',
                     ),
@@ -74,17 +77,11 @@ class HomePageBody extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 15),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15.r),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.22,
-                    imageUrl: 'https://i.ibb.co/1XW6tMT/CTA.png',
-                  ),
+                const CustomBannerContainerWidget(
+                  imageUrl: 'https://i.ibb.co/1XW6tMT/CTA.png',
                 ),
                 const SizedBox(height: 5),
-                SectionRow(
+                CustomSectionRowWidget(
                   name: 'Top Doctors',
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.topDoctorsPageRoute);
@@ -92,7 +89,7 @@ class HomePageBody extends StatelessWidget {
                 ),
                 const TopDoctorsHomeListView(),
                 const SizedBox(height: 15),
-                SectionRow(
+                CustomSectionRowWidget(
                   name: 'Health article',
                   onPressed: () {},
                 ),
@@ -106,3 +103,4 @@ class HomePageBody extends StatelessWidget {
     );
   }
 }
+
