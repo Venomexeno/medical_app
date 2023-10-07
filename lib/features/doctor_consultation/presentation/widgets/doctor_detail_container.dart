@@ -20,7 +20,7 @@ class DoctorDetailContainer extends StatelessWidget {
           CachedNetworkImage(
             fit: BoxFit.cover,
             imageUrl:
-                'https://i.ibb.co/m9zqbpW/pexels-cedric-fauntleroy-4270371.png',
+                'https://i.ibb.co/NLsLXZb/doctor2.jpg',
             imageBuilder: (context, imageProvider) => Container(
               height: double.infinity,
               width: 115.w,

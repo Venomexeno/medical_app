@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_banner_container_widget.dart';
 import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
 import 'package:medical_app/core/widgets/custom_section_row_widget.dart';
@@ -23,7 +24,9 @@ class OnlinePharmacyPageBody extends StatelessWidget {
           actions: [
             IconButton(
               icon: SvgPicture.asset('assets/icons/Cart.svg'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.myCartPageRoute);
+              },
             ),
           ],
           leading: IconButton(

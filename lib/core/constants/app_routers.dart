@@ -12,4 +12,7 @@ class AppRoutes {
   static const String doctorDetailPageRoute = '/doctorDetail';
   static const String doctorAppointmentBookingPageRoute = '/doctorAppointmentBooking';
   static const String onlinePharmacyPageRoute = '/onlinePharmacy';
+  static const String drugsDetailPageRoute = '/drugsDetail';
+  static const String myCartPageRoute = '/myCart';
+
 }

@@ -18,7 +18,7 @@ class TopDoctorsHomeListView extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return const TopDoctorsHomeListViewItem(
-            imageUrl: 'https://i.ibb.co/m9zqbpW/pexels-cedric-fauntleroy-4270371.png',
+            imageUrl: 'https://i.ibb.co/NLsLXZb/doctor2.jpg',
             rating: 4.5,
             name: 'Marcus Horizon',
             specialization: 'Cardiologist',

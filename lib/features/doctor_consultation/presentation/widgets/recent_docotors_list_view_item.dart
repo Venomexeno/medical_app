@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
 
 class RecentDoctorsListViewItem extends StatelessWidget {
   const RecentDoctorsListViewItem({
@@ -14,11 +15,13 @@ class RecentDoctorsListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: (){},
-          child: CachedNetworkImage(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(AppRoutes.doctorDetailPageRoute);
+      },
+      child: Column(
+        children: [
+          CachedNetworkImage(
             imageUrl: imageUrl,
             imageBuilder: (context, imageProvider) => Container(
               width: 80.w,
@@ -29,15 +32,15 @@ class RecentDoctorsListViewItem extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Dr. $name',
-          style: TextStyle(
-            fontSize: 13.sp,
+          const SizedBox(height: 8),
+          Text(
+            'Dr. $name',
+            style: TextStyle(
+              fontSize: 13.sp,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

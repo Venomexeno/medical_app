@@ -14,6 +14,7 @@ class DoctorDetailPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverAppBar(
           centerTitle: true,
@@ -36,7 +37,7 @@ class DoctorDetailPageBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

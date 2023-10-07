@@ -169,8 +169,8 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 200.w,
+                    SizedBox(width: 60.w),
+                    Expanded(
                       child: CustomElevatedButtonWidget(
                         text: 'Booking',
                         onPressed: () {
