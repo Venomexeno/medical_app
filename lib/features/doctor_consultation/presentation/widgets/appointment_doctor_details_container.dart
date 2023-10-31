@@ -26,12 +26,12 @@ class AppointmentDoctorDetailsContainer extends StatelessWidget {
     return Container(
       height: 150.h,
       width: double.infinity,
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xffE8F3F1)),
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(10.r),
       ),
-      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           ClipRRect(
