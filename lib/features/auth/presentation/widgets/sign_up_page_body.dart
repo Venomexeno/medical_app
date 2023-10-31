@@ -27,6 +27,7 @@ class SignUpPageBody extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return CustomAlertDialogWidget(
+                        assetsIcon: 'assets/icons/Done.svg',
                         titleText: 'Success',
                         descriptionText:
                             'Your account has been successfully registered.',

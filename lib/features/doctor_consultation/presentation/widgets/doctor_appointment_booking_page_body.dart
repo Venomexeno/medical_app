@@ -178,6 +178,7 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return CustomAlertDialogWidget(
+                                assetsIcon: 'assets/icons/Done.svg',
                                 titleText: 'Payment Success',
                                 descriptionText: 'Your payment has been successful, you can have a consultation session with your trusted doctor',
                                 buttonText: 'Chat Doctor',

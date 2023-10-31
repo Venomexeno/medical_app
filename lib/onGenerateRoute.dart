@@ -8,6 +8,7 @@ import 'package:medical_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/verification_code_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/root_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
@@ -110,6 +111,12 @@ class OnGenerateRoute {
       case AppRoutes.myCartPageRoute:
         return MaterialPageRoute(
           builder: (_) => const MyCartPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.schedulePageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const SchedulePage(),
           settings: settings,
         );
 

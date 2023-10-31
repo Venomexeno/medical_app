@@ -14,5 +14,5 @@ class AppRoutes {
   static const String onlinePharmacyPageRoute = '/onlinePharmacy';
   static const String drugsDetailPageRoute = '/drugsDetail';
   static const String myCartPageRoute = '/myCart';
-
+  static const String schedulePageRoute = '/schedule';
 }

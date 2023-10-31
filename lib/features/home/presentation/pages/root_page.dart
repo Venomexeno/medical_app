@@ -16,55 +16,58 @@ class RootPage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
-          return BottomNavigationBar(
-            currentIndex: state.index,
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/Home.svg'),
-                activeIcon: SvgPicture.asset(
-                  'assets/icons/Home.svg',
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.green,
-                    BlendMode.srcIn,
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+            child: BottomNavigationBar(
+              currentIndex: state.index,
+              items: [
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset('assets/icons/Home.svg'),
+                  activeIcon: SvgPicture.asset(
+                    'assets/icons/Home.svg',
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.green,
+                      BlendMode.srcIn,
+                    ),
                   ),
+                  label: 'Home',
                 ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/Calendar.svg'),
-                activeIcon: SvgPicture.asset(
-                  'assets/icons/Calendar.svg',
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.green,
-                    BlendMode.srcIn,
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset('assets/icons/Calendar.svg'),
+                  activeIcon: SvgPicture.asset(
+                    'assets/icons/Calendar.svg',
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.green,
+                      BlendMode.srcIn,
+                    ),
                   ),
+                  label: 'Calendar',
                 ),
-                label: 'Calendar',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/Profile.svg'),
-                activeIcon: SvgPicture.asset(
-                  'assets/icons/Profile.svg',
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.green,
-                    BlendMode.srcIn,
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset('assets/icons/Profile.svg'),
+                  activeIcon: SvgPicture.asset(
+                    'assets/icons/Profile.svg',
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.green,
+                      BlendMode.srcIn,
+                    ),
                   ),
+                  label: 'Profile',
                 ),
-                label: 'Profile',
-              ),
-            ],
-            onTap: (index) {
-              if (index == 0) {
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.home);
-              } else if (index == 1) {
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.calendar);
-              } else if (index == 2) {
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.profile);
-              }
-            },
+              ],
+              onTap: (index) {
+                if (index == 0) {
+                  BlocProvider.of<NavigationCubit>(context)
+                      .getNavBarItem(NavbarItem.home);
+                } else if (index == 1) {
+                  BlocProvider.of<NavigationCubit>(context)
+                      .getNavBarItem(NavbarItem.calendar);
+                } else if (index == 2) {
+                  BlocProvider.of<NavigationCubit>(context)
+                      .getNavBarItem(NavbarItem.profile);
+                }
+              },
+            ),
           );
         },
       ),

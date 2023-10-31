@@ -8,15 +8,19 @@ class CustomAlertDialogWidget extends StatelessWidget {
   const CustomAlertDialogWidget({
     super.key,
     required this.titleText,
-    required this.descriptionText,
+    this.descriptionText,
     required this.buttonText,
     required this.onPressed,
+    this.cancelButton,
+    required this.assetsIcon,
   });
 
+  final String assetsIcon;
   final String titleText;
-  final String descriptionText;
+  final String? descriptionText;
   final String buttonText;
   final VoidCallback onPressed;
+  final String? cancelButton;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +36,10 @@ class CustomAlertDialogWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset('assets/icons/Done.svg'),
+            SvgPicture.asset(assetsIcon),
             const SizedBox(height: 40),
             Text(
+              textAlign: TextAlign.center,
               titleText,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -42,19 +47,29 @@ class CustomAlertDialogWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              descriptionText,
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: const Color(0xffA1A8B0),
-              ),
-              textAlign: TextAlign.center,
-            ),
+            descriptionText != null
+                ? Text(
+                    descriptionText!,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      color: const Color(0xffA1A8B0),
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                : Container(),
             const SizedBox(height: 24),
             CustomElevatedButtonWidget(
               text: buttonText,
               onPressed: onPressed,
             ),
+            cancelButton != null
+                ? TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(cancelButton!),
+                  )
+                : Container(),
           ],
         ),
       ),

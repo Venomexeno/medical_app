@@ -89,7 +89,8 @@ class PopularPharmacyProductListViewItem extends StatelessWidget {
                 IconButton(
                   padding: const EdgeInsets.all(0.0),
                   onPressed: () {},
-                  icon: const Icon(
+                  icon: Icon(
+                    size: 24.sp,
                     Icons.add_box,
                     color: AppColors.green,
                   ),

@@ -25,7 +25,7 @@ class ProductOnSaleListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
-      width: 152.w,
+      width: 154.w,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xffE8F3F1)),
         color: Colors.transparent,
@@ -93,11 +93,12 @@ class ProductOnSaleListViewItem extends StatelessWidget {
                   color: const Color(0xffADADAD),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               IconButton(
                 padding: EdgeInsets.zero,
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
+                  size: 24.sp,
                   Icons.add_box,
                   color: AppColors.green,
                 ),

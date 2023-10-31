@@ -45,6 +45,7 @@ class CreateNewPasswordPageBody extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return CustomAlertDialogWidget(
+                        assetsIcon: 'assets/icons/Done.svg',
                         titleText: 'Success',
                         descriptionText:
                             'You have successfully reset your password.',
