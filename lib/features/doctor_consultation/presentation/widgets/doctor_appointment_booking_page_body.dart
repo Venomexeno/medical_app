@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
-import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
-import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
+import 'package:medical_app/core/widgets/payment_checkout_row_widget.dart';
+import 'package:medical_app/core/widgets/payment_method_container_widget.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_details_row.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_doctor_details_container.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/appointment_title_row.dart';
-import 'package:medical_app/features/doctor_consultation/presentation/widgets/payment_details_row.dart';
+import 'package:medical_app/core/widgets/payment_details_row_widget.dart';
 
 ///TODO: onPressed Button Functions
 
@@ -83,22 +82,22 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const PaymentDetailsRow(
+                const PaymentDetailsRowWidget(
                   title: 'Consultation',
                   price: 60,
                 ),
                 const SizedBox(height: 10),
-                const PaymentDetailsRow(
+                const PaymentDetailsRowWidget(
                   title: 'Admin Fee',
                   price: 1,
                 ),
                 const SizedBox(height: 10),
-                const PaymentDetailsRow(
+                const PaymentDetailsRowWidget(
                   title: 'Additional Discount',
                   price: 0,
                 ),
                 const SizedBox(height: 10),
-                PaymentDetailsRow(
+                PaymentDetailsRowWidget(
                   title: 'Total',
                   textStyle: TextStyle(
                     fontSize: 14.sp,
@@ -118,78 +117,11 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  width: double.infinity,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xffE8F3F1)),
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset('assets/images/VISA.svg'),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Change',
-                          style: TextStyle(
-                            color: const Color(0xffADADAD),
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                const PaymentMethodContainerWidget(),
                 const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total',
-                          style: TextStyle(
-                            color: const Color(0xffA1A8B0),
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          '61 LE',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.black,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 60.w),
-                    Expanded(
-                      child: CustomElevatedButtonWidget(
-                        text: 'Booking',
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return CustomAlertDialogWidget(
-                                assetsIcon: 'assets/icons/Done.svg',
-                                titleText: 'Payment Success',
-                                descriptionText: 'Your payment has been successful, you can have a consultation session with your trusted doctor',
-                                buttonText: 'Chat Doctor',
-                                onPressed: (){},
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                const PaymentCheckoutRowWidget(
+                  price: 61,
+                  buttonText: 'Booking',
                 ),
               ],
             ),

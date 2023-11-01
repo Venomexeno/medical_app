@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PaymentDetailsRow extends StatelessWidget {
-  const PaymentDetailsRow({
+class PaymentDetailsRowWidget extends StatelessWidget {
+  const PaymentDetailsRowWidget({
     super.key,
     required this.title,
     required this.price,
@@ -30,15 +30,15 @@ class PaymentDetailsRow extends StatelessWidget {
         ),
         price == 0
             ? Text(
-                '-',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
-              )
+          '-',
+          style: TextStyle(
+            fontSize: 14.sp,
+          ),
+        )
             : Text(
-                '$price LE',
-                style: TextStyle(fontSize: 14.sp, color: priceTextColor),
-              ),
+          '$price LE',
+          style: TextStyle(fontSize: 14.sp, color: priceTextColor),
+        ),
       ],
     );
   }
