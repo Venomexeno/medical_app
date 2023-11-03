@@ -119,9 +119,15 @@ class DoctorAppointmentBookingPageBody extends StatelessWidget {
                 const SizedBox(height: 12),
                 const PaymentMethodContainerWidget(),
                 const SizedBox(height: 25),
-                const PaymentCheckoutRowWidget(
+                PaymentCheckoutRowWidget(
                   price: 61,
                   buttonText: 'Booking',
+                  dialogAssetsIcon: 'assets/icons/Done.svg',
+                  dialogTitleText: 'Payment Success',
+                  dialogDescriptionText:
+                      'Your payment has been successful, you can have a consultation session with your trusted doctor',
+                  dialogButtonText: 'Chat Doctor',
+                  dialogOnPressed: () {},
                 ),
               ],
             ),

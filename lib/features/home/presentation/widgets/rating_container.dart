@@ -13,7 +13,7 @@ class RatingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 3),
+      padding: EdgeInsets.symmetric(horizontal: 3.w),
       decoration: BoxDecoration(
         color: const Color(0xffE8F3F1),
         borderRadius: BorderRadius.circular(5.r),
@@ -21,7 +21,7 @@ class RatingContainer extends StatelessWidget {
       height: 25.h,
       width: 50.w,
       child: Padding(
-        padding: const EdgeInsets.all(2),
+        padding: EdgeInsets.all(2.r),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

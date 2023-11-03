@@ -17,7 +17,7 @@ class ProfilePageBody extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.42,
+              height: MediaQuery.of(context).size.height * 0.41,
               width: double.infinity,
               color: const Color(0xff45c3b8),
               child: Column(

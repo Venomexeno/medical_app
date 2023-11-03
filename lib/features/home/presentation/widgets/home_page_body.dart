@@ -4,7 +4,7 @@ import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_banner_container_widget.dart';
 import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
-import 'package:medical_app/features/home/presentation/widgets/health_article_list_view.dart';
+import 'package:medical_app/features/home/presentation/widgets/health_article_home_list_view.dart';
 import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
 import 'package:medical_app/core/widgets/custom_section_row_widget.dart';
 import 'package:medical_app/features/home/presentation/widgets/top_doctors_home_list_view.dart';
@@ -42,8 +42,9 @@ class HomePageBody extends StatelessWidget {
                   hintText: 'Search doctor, drugs,articles...',
                   semanticsLabelText: 'Search',
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
                 GridView.count(
+                  childAspectRatio: 103.w/103.h,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 4,
                   shrinkWrap: true,
@@ -91,10 +92,12 @@ class HomePageBody extends StatelessWidget {
                 const SizedBox(height: 15),
                 CustomSectionRowWidget(
                   name: 'Health article',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.healthArticlePageRoute);
+                  },
                 ),
                 const SizedBox(height: 5),
-                const HealthArticleListView(),
+                const HealthArticleHomeListView(),
               ],
             ),
           ),

@@ -24,7 +24,7 @@ class MenuItemContainer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(14),
+            padding: EdgeInsets.all(13.r),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -38,7 +38,7 @@ class MenuItemContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.r),
               color: AppColors.white,
             ),
-            child: SvgPicture.asset(icon),
+            child: SvgPicture.asset(icon,height: 24.h),
           ),
           const SizedBox(height: 8),
           Text(

@@ -90,22 +90,50 @@ class UpcomingScheduleListViewItem extends StatelessWidget {
             padding: const EdgeInsets.only(right: 40.0),
             child: Row(
               children: [
-                SvgPicture.asset('assets/icons/Schedule Calendar.svg'),
+                SvgPicture.asset(
+                  'assets/icons/Schedule Calendar.svg',
+                  height: 24.h,
+                ),
                 const SizedBox(width: 3),
-                Text(date),
+                Text(
+                  date,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                  ),
+                ),
                 const Spacer(),
-                SvgPicture.asset('assets/icons/Time Circle.svg'),
+                SvgPicture.asset(
+                  'assets/icons/Time Circle.svg',
+                  height: 24.h,
+                ),
                 const SizedBox(width: 3),
-                Text(time),
+                Text(
+                  time,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                  ),
+                ),
                 const Spacer(),
                 const SizedBox(width: 3),
                 isConfirmed
-                    ? const Icon(Icons.fiber_manual_record,
-                        color: Color(0xff7BEB78), size: 10)
-                    : const Icon(Icons.fiber_manual_record,
-                        color: Colors.yellow, size: 10),
+                    ? Icon(Icons.fiber_manual_record,
+                        color: const Color(0xff7BEB78), size: 24.r)
+                    : Icon(Icons.fiber_manual_record,
+                        color: Colors.yellow, size: 24.r),
                 const SizedBox(width: 3),
-                isConfirmed ? const Text('Confirmed') : const Text('Pending'),
+                isConfirmed
+                    ? Text(
+                        'Confirmed',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      )
+                    : Text(
+                        'Pending',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      ),
               ],
             ),
           ),

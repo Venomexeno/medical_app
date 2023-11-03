@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HealthArticleListViewItem extends StatelessWidget {
-  const HealthArticleListViewItem({
+class HealthArticleHomeListViewItem extends StatelessWidget {
+  const HealthArticleHomeListViewItem({
     super.key,
     required this.title,
     required this.date,
@@ -31,7 +31,7 @@ class HealthArticleListViewItem extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(6.r),
               child: CachedNetworkImage(
                 height: 70.h,
                 width: 70.w,

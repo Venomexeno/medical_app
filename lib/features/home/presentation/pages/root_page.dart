@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/nav_bar_items.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
@@ -17,14 +18,20 @@ class RootPage extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+            height: MediaQuery.of(context).size.height * 0.11,
             child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
               currentIndex: state.index,
               items: [
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset('assets/icons/Home.svg'),
+                  icon: SvgPicture.asset(
+                    'assets/icons/Home.svg',
+                    height: 25.h,
+                  ),
                   activeIcon: SvgPicture.asset(
                     'assets/icons/Home.svg',
+                    height: 25.h,
                     colorFilter: const ColorFilter.mode(
                       AppColors.green,
                       BlendMode.srcIn,
@@ -33,9 +40,13 @@ class RootPage extends StatelessWidget {
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset('assets/icons/Calendar.svg'),
+                  icon: SvgPicture.asset(
+                    'assets/icons/Calendar.svg',
+                    height: 25.h,
+                  ),
                   activeIcon: SvgPicture.asset(
                     'assets/icons/Calendar.svg',
+                    height: 25.h,
                     colorFilter: const ColorFilter.mode(
                       AppColors.green,
                       BlendMode.srcIn,

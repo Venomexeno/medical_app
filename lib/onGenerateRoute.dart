@@ -9,6 +9,7 @@ import 'package:medical_app/features/auth/presentation/pages/verification_code_p
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
+import 'package:medical_app/features/home/presentation/pages/health_article_page.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/root_page.dart';
 import 'package:medical_app/features/home/presentation/pages/top_doctors_page.dart';
@@ -62,7 +63,9 @@ class OnGenerateRoute {
       case AppRoutes.rootPageRoute:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<NavigationCubit>(
-              create: (context) => NavigationCubit(), child: const RootPage()),
+            create: (context) => NavigationCubit(),
+            child: const RootPage(),
+          ),
           settings: settings,
         );
 
@@ -117,6 +120,12 @@ class OnGenerateRoute {
       case AppRoutes.schedulePageRoute:
         return MaterialPageRoute(
           builder: (_) => const SchedulePage(),
+          settings: settings,
+        );
+
+      case AppRoutes.healthArticlePageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const HealthArticlePage(),
           settings: settings,
         );
 

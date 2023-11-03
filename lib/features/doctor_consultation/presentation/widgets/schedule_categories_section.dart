@@ -34,7 +34,7 @@ class _ScheduleCategoriesSectionState extends State<ScheduleCategoriesSection>
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(4),
+          padding: EdgeInsets.all(4.r),
           decoration: BoxDecoration(
             color: const Color(0xffE8F3F1),
             borderRadius: BorderRadius.circular(8.r),

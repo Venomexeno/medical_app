@@ -54,12 +54,14 @@ class TextFieldContainerWidget extends StatelessWidget {
         filled: true,
         fillColor: const Color(0xffE5E7EB),
         hintText: hintText,
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
+        ),
         border: InputBorder.none,
         prefixIcon: Padding(
           padding: const EdgeInsets.only(left: 24.0, right: 24),
           child: UnconstrainedBox(
             child: SvgPicture.asset(
-              width: 32.w,
               height: 32.h,
               prefixIcon,
               semanticsLabel: semanticsLabel,

@@ -9,10 +9,20 @@ class PaymentCheckoutRowWidget extends StatelessWidget {
     super.key,
     required this.buttonText,
     required this.price,
+    required this.dialogAssetsIcon,
+    required this.dialogTitleText,
+    required this.dialogDescriptionText,
+    required this.dialogButtonText,
+    required this.dialogOnPressed,
   });
 
   final String buttonText;
   final double price;
+  final String dialogAssetsIcon;
+  final String dialogTitleText;
+  final String dialogDescriptionText;
+  final String dialogButtonText;
+  final VoidCallback dialogOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +59,11 @@ class PaymentCheckoutRowWidget extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return CustomAlertDialogWidget(
-                    assetsIcon: 'assets/icons/Done.svg',
-                    titleText: 'Payment Success',
-                    descriptionText:
-                        'Your payment has been successful, you can have a consultation session with your trusted doctor',
-                    buttonText: 'Chat Doctor',
-                    onPressed: () {},
+                    assetsIcon: dialogAssetsIcon,
+                    titleText: dialogTitleText,
+                    descriptionText: dialogDescriptionText,
+                    buttonText: dialogButtonText,
+                    onPressed: dialogOnPressed,
                   );
                 },
               );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/payment_checkout_row_widget.dart';
 import 'package:medical_app/core/widgets/payment_details_row_widget.dart';
 import 'package:medical_app/core/widgets/payment_method_container_widget.dart';
@@ -90,9 +91,16 @@ class MyCartPageBody extends StatelessWidget {
                 const SizedBox(height: 12),
                 const PaymentMethodContainerWidget(),
                 const SizedBox(height: 25),
-                const PaymentCheckoutRowWidget(
+                PaymentCheckoutRowWidget(
                   price: 61,
                   buttonText: 'Checkout',
+                  dialogAssetsIcon:'assets/icons/Done.svg',
+                  dialogTitleText:'Payment Success',
+                  dialogDescriptionText:'Your payment has been successful, you can have a consultation session with your trusted doctor',
+                  dialogButtonText:'Back to Home',
+                  dialogOnPressed: (){
+                    Navigator.of(context).pushReplacementNamed(AppRoutes.rootPageRoute);
+                  },
                 ),
                 const SizedBox(height: 24),
               ],
