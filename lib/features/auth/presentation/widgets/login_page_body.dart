@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
+import 'package:medical_app/features/auth/domain/entities/user_entity.dart';
+import 'package:medical_app/features/auth/presentation/controller/credential/credential_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
+import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
+import 'package:medical_app/features/auth/presentation/widgets/text_field_password_container_widget.dart';
 
-class LoginPageBody extends StatelessWidget {
+class LoginPageBody extends StatefulWidget {
   LoginPageBody({super.key});
 
+  @override
+  State<LoginPageBody> createState() => _LoginPageBodyState();
+}
+
+class _LoginPageBodyState extends State<LoginPageBody> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +39,71 @@ class LoginPageBody extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            LoginFormSection(formKey: _formKey),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFieldContainerWidget(
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Please Enter your email';
+                      }
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return 'Please a valid Email';
+                      }
+                      return null;
+                    },
+                    prefixIcon: 'assets/icons/Email.svg',
+                    hintText: 'Enter your email',
+                    controller: _emailController,
+                    semanticsLabel: 'Email',
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 16),
+                  TextFieldPasswordContainerWidget(
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Please re-enter password';
+                      }
+                      if (value.length < 4) {
+                        return 'Password must contain 4 characters at least';
+                      }
+                      return null;
+                    },
+                    controller: _passwordController,
+                    semanticsLabel: 'Password',
+                    hintText: 'Enter your password',
+                  ),
+                ],
+              ),
+            ),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
-            CustomElevatedButtonWidget(
-              text: 'Login',
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
+            BlocConsumer<CredentialCubit, CredentialState>(
+              listener: (context, state) {
+                if (state is CredentialSuccess) {
                   Navigator.pushReplacementNamed(
                       context, AppRoutes.rootPageRoute);
-                } else {
-                  print("UnSuccessful");
                 }
+              },
+              builder: (context, state) {
+                if (state is CredentialLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state is CredentialFailure) {
+                  print('Failure');
+                }
+                return CustomElevatedButtonWidget(
+                  text: 'Login',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _submitSignIn();
+                    } else {
+                      print("UnSuccessful");
+                    }
+                  },
+                );
               },
             ),
             const SizedBox(height: 24),
@@ -85,6 +157,15 @@ class LoginPageBody extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _submitSignIn() {
+    BlocProvider.of<CredentialCubit>(context).submitSignIn(
+      userEntity: UserEntity(
+        email: _emailController.text,
+        password: _passwordController.text,
       ),
     );
   }

@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
+import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
 import 'package:medical_app/features/profile/presentation/widgets/profile_button_row.dart';
 
 class ProfilePageBody extends StatelessWidget {
@@ -17,7 +19,7 @@ class ProfilePageBody extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.41,
+              height: 245.h,
               width: double.infinity,
               color: const Color(0xff45c3b8),
               child: Column(
@@ -50,75 +52,79 @@ class ProfilePageBody extends StatelessWidget {
             Positioned(
               top: 0,
               right: 0,
-              child: SvgPicture.asset('assets/images/Lines.svg'),
+              child: SvgPicture.asset('assets/images/Lines.svg', height: 330.h),
             ),
           ],
         ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.48,
-          width: double.infinity,
-          color: const Color(0xff45c3b8),
+        Expanded(
           child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40.r),
-                topRight: Radius.circular(40.r),
+            width: double.infinity,
+            color: const Color(0xff45c3b8),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40.r),
+                  topRight: Radius.circular(40.r),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              child: Column(
-                children: [
-                  ProfileButtonRow(
-                    onPressed: (){},
-                    assetsIcon: 'assets/icons/Profile Saved.svg',
-                    text: 'My Saved',
-                  ),
-                  const Divider(),
-                  ProfileButtonRow(
-                    onPressed: (){
-                      Navigator.of(context).pushNamed(AppRoutes.schedulePageRoute);
-                    },
-                    assetsIcon: 'assets/icons/Profile Appointment.svg',
-                    text: 'Appointment',
-                  ),
-                  const Divider(),
-                  ProfileButtonRow(
-                    onPressed: (){},
-                    assetsIcon: 'assets/icons/Profile Payment Method.svg',
-                    text: 'Payment Method',
-                  ),
-                  const Divider(),
-                  ProfileButtonRow(
-                    onPressed: (){},
-                    assetsIcon: 'assets/icons/Profile FAQs.svg',
-                    text: 'FAQs',
-                  ),
-                  const Divider(),
-                  ProfileButtonRow(
-                    onPressed: (){
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return CustomAlertDialogWidget(
-                            assetsIcon: 'assets/icons/Logout.svg',
-                            titleText: 'Are you sure to log out of your account ?',
-                            buttonText: 'Log Out',
-                            cancelButton: 'Cancel',
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  AppRoutes.loginPageRoute, (route) => false);
-                            },
-                          );
-                        },
-                      );
-                    },
-                    assetsIcon: 'assets/icons/Profile Logout.svg',
-                    text: 'Logout',
-                    textColor: const Color(0xffFE5C5C),
-                  ),
-                ],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                child: Column(
+                  children: [
+                    ProfileButtonRow(
+                      onPressed: () {},
+                      assetsIcon: 'assets/icons/Profile Saved.svg',
+                      text: 'My Saved',
+                    ),
+                    const Divider(),
+                    ProfileButtonRow(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.schedulePageRoute);
+                      },
+                      assetsIcon: 'assets/icons/Profile Appointment.svg',
+                      text: 'Appointment',
+                    ),
+                    const Divider(),
+                    ProfileButtonRow(
+                      onPressed: () {},
+                      assetsIcon: 'assets/icons/Profile Payment Method.svg',
+                      text: 'Payment Method',
+                    ),
+                    const Divider(),
+                    ProfileButtonRow(
+                      onPressed: () {},
+                      assetsIcon: 'assets/icons/Profile FAQs.svg',
+                      text: 'FAQs',
+                    ),
+                    const Divider(),
+                    ProfileButtonRow(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CustomAlertDialogWidget(
+                              assetsIcon: 'assets/icons/Logout.svg',
+                              titleText:
+                                  'Are you sure to log out of your account ?',
+                              buttonText: 'Log Out',
+                              cancelButton: 'Cancel',
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    AppRoutes.loginPageRoute, (route) => false);
+                              },
+                            );
+                          },
+                        );
+                      },
+                      assetsIcon: 'assets/icons/Profile Logout.svg',
+                      text: 'Logout',
+                      textColor: const Color(0xffFE5C5C),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -126,5 +132,8 @@ class ProfilePageBody extends StatelessWidget {
       ],
     );
   }
-}
 
+  void _submitSignOut(context) {
+    BlocProvider.of<AuthCubit>(context).loggedOut();
+  }
+}

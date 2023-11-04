@@ -58,12 +58,14 @@ class TrendingArticleListViewItem extends StatelessWidget {
             SizedBox(height: 4.h),
             Text(
               title,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 4.h),
+            Spacer(),
             Text(
               date,
               style: TextStyle(fontSize: 9.sp, color: const Color(0xffADADAD)),

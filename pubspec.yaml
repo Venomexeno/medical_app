@@ -47,6 +47,7 @@ dependencies:
   google_sign_in: ^6.1.5
   image_picker: ^1.0.4
   fluttertoast: ^8.2.2
+  firebase_core: ^2.21.0
 
   #General
   date_picker_timeline:

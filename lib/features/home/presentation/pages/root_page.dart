@@ -18,7 +18,7 @@ class RootPage extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.11,
+            height: 65.h,
             child: BottomNavigationBar(
               showSelectedLabels: false,
               showUnselectedLabels: false,

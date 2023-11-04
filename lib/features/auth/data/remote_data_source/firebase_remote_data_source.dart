@@ -1,0 +1,25 @@
+import 'package:medical_app/features/auth/domain/entities/user_entity.dart';
+
+abstract class FirebaseRemoteDataSource {
+
+  //Credential Section
+  Future<void> signIn(UserEntity user);
+
+  Future<void> signUp(UserEntity user);
+
+  Future<bool> isSignIn();
+
+  Future<void> signOut();
+
+  Future<void> forgotPassword(String email);
+
+  Future<void> googleAuth();
+
+  Future<void> getUpdateUser(UserEntity user);
+
+  Future<void> getCreateCurrentUser(UserEntity user);
+
+  Future<String> getCurrentUserId();
+
+//TODO: missing methods
+}

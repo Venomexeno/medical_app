@@ -27,7 +27,7 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SignUpPageBody(),
+      body: const SignUpPageBody(),
     );
   }
 }

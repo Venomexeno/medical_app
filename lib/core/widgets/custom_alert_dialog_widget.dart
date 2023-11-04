@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
+import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
 
 class CustomAlertDialogWidget extends StatelessWidget {
   const CustomAlertDialogWidget({
