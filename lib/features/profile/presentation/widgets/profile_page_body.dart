@@ -112,6 +112,7 @@ class ProfilePageBody extends StatelessWidget {
                               buttonText: 'Log Out',
                               cancelButton: 'Cancel',
                               onPressed: () {
+                                BlocProvider.of<AuthCubit>(context).loggedOut();
                                 Navigator.pushNamedAndRemoveUntil(context,
                                     AppRoutes.loginPageRoute, (route) => false);
                               },
@@ -131,9 +132,5 @@ class ProfilePageBody extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  void _submitSignOut(context) {
-    BlocProvider.of<AuthCubit>(context).loggedOut();
   }
 }

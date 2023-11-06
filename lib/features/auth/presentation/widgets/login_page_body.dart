@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/auth/domain/entities/user_entity.dart';
+import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
 import 'package:medical_app/features/auth/presentation/controller/credential/credential_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
-import 'package:medical_app/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_password_container_widget.dart';
 
 class LoginPageBody extends StatefulWidget {
-  LoginPageBody({super.key});
+  const LoginPageBody({super.key});
 
   @override
   State<LoginPageBody> createState() => _LoginPageBodyState();
@@ -23,6 +23,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late final String userId;
 
   @override
   void dispose() {
@@ -66,9 +67,6 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                       if (value!.isEmpty) {
                         return 'Please re-enter password';
                       }
-                      if (value.length < 4) {
-                        return 'Password must contain 4 characters at least';
-                      }
                       return null;
                     },
                     controller: _passwordController,
@@ -80,11 +78,19 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
+
+            ///FIXME: Bloc Listener always casting
             BlocConsumer<CredentialCubit, CredentialState>(
               listener: (context, state) {
                 if (state is CredentialSuccess) {
-                  Navigator.pushReplacementNamed(
-                      context, AppRoutes.rootPageRoute);
+                  BlocProvider.of<AuthCubit>(context).loggedIn();
+                }
+                if (state is CredentialFailure) {
+                  const snackBar = SnackBar(
+                    duration: Duration(seconds: 2),
+                    content: Center(child: Text('Wrong Email or Password')),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
               builder: (context, state) {

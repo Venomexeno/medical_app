@@ -62,11 +62,13 @@ class OnGenerateRoute {
 
       case AppRoutes.rootPageRoute:
         return MaterialPageRoute(
+          settings: settings,
           builder: (_) => BlocProvider<NavigationCubit>(
             create: (context) => NavigationCubit(),
-            child: const RootPage(),
+            child: RootPage(
+              uid: settings.arguments as String
+            ),
           ),
-          settings: settings,
         );
 
       case AppRoutes.homePageRoute:

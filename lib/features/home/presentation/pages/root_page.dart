@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/nav_bar_items.dart';
+import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
 import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
@@ -10,7 +11,12 @@ import 'package:medical_app/features/profile/presentation/pages/profile_page.dar
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RootPage extends StatelessWidget {
-  const RootPage({super.key});
+  const RootPage({
+    super.key,
+    required this.uid,
+  });
+
+  final String uid;
 
   @override
   Widget build(BuildContext context) {

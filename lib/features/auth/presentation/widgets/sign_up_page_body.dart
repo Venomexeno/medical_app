@@ -81,8 +81,8 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                       if (value!.isEmpty) {
                         return 'Please Enter a Password';
                       }
-                      if (value.length < 4) {
-                        return 'Password must contain 4 characters at least';
+                      if (value.length < 6) {
+                        return 'Password must contain 6 characters at least';
                       }
                       return null;
                     },
@@ -109,6 +109,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                         onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(context,
                               AppRoutes.loginPageRoute, (route) => false);
+
                         },
                       );
                     },
