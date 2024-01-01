@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
-import 'package:medical_app/features/auth/domain/entities/user_entity.dart';
-import 'package:medical_app/features/auth/presentation/controller/credential/credential_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_password_container_widget.dart';
@@ -94,60 +89,18 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               ),
             ),
             const SizedBox(height: 32),
-            BlocConsumer<CredentialCubit, CredentialState>(
-              listener: (context, state) {
-                if (state is CredentialSuccess) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return CustomAlertDialogWidget(
-                        assetsIcon: 'assets/icons/Done.svg',
-                        titleText: 'Success',
-                        descriptionText:
-                            'Your account has been successfully registered.',
-                        buttonText: 'Login',
-                        onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context,
-                              AppRoutes.loginPageRoute, (route) => false);
-
-                        },
-                      );
-                    },
-                  );
+            CustomElevatedButtonWidget(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                } else {
+                  return;
                 }
               },
-              builder: (context, state) {
-                if (state is CredentialLoading) {
-                  return const CircularProgressIndicator();
-                }
-                if (state is CredentialFailure) {
-                  print('failure');
-                }
-                return CustomElevatedButtonWidget(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _submitSignUp();
-                    } else {
-                      return;
-                    }
-                  },
-                  text: 'Sign Up',
-                );
-              },
+              text: 'Sign Up',
             ),
             const LoginTextButtonWidget()
           ],
         ),
-      ),
-    );
-  }
-
-  void _submitSignUp() {
-    BlocProvider.of<CredentialCubit>(context).submitSignUp(
-      userEntity: UserEntity(
-        name: _usernameController.text,
-        email: _emailController.text,
-        password: _passwordController.text,
       ),
     );
   }

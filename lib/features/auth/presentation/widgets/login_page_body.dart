@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
-import 'package:medical_app/features/auth/domain/entities/user_entity.dart';
-import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
-import 'package:medical_app/features/auth/presentation/controller/credential/credential_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
@@ -23,7 +19,6 @@ class _LoginPageBodyState extends State<LoginPageBody> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  late final String userId;
 
   @override
   void dispose() {
@@ -78,38 +73,13 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
-
-            ///FIXME: Bloc Listener always casting
-            BlocConsumer<CredentialCubit, CredentialState>(
-              listener: (context, state) {
-                if (state is CredentialSuccess) {
-                  BlocProvider.of<AuthCubit>(context).loggedIn();
+            CustomElevatedButtonWidget(
+              text: 'Login',
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                } else {
+                  print("UnSuccessful");
                 }
-                if (state is CredentialFailure) {
-                  const snackBar = SnackBar(
-                    duration: Duration(seconds: 2),
-                    content: Center(child: Text('Wrong Email or Password')),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
-              },
-              builder: (context, state) {
-                if (state is CredentialLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (state is CredentialFailure) {
-                  print('Failure');
-                }
-                return CustomElevatedButtonWidget(
-                  text: 'Login',
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _submitSignIn();
-                    } else {
-                      print("UnSuccessful");
-                    }
-                  },
-                );
               },
             ),
             const SizedBox(height: 24),
@@ -163,15 +133,6 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _submitSignIn() {
-    BlocProvider.of<CredentialCubit>(context).submitSignIn(
-      userEntity: UserEntity(
-        email: _emailController.text,
-        password: _passwordController.text,
       ),
     );
   }

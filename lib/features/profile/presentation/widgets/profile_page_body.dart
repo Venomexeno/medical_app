@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
-import 'package:medical_app/features/auth/presentation/controller/auth/auth_cubit.dart';
 import 'package:medical_app/features/profile/presentation/widgets/profile_button_row.dart';
 
 class ProfilePageBody extends StatelessWidget {
@@ -112,9 +110,6 @@ class ProfilePageBody extends StatelessWidget {
                               buttonText: 'Log Out',
                               cancelButton: 'Cancel',
                               onPressed: () {
-                                BlocProvider.of<AuthCubit>(context).loggedOut();
-                                Navigator.pushNamedAndRemoveUntil(context,
-                                    AppRoutes.loginPageRoute, (route) => false);
                               },
                             );
                           },

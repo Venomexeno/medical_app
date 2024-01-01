@@ -50,9 +50,7 @@ dependencies:
   firebase_core: ^2.21.0
 
   #General
-  date_picker_timeline:
-    git:
-     url: https://github.com/Venomexeno/DatePickerTimelineFlutter
+
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.7
   cached_network_image: ^3.2.3
@@ -63,6 +61,7 @@ dependencies:
   autoscale_tabbarview: ^1.0.2
   flutter_rating_bar: ^4.0.1
   device_preview: ^1.1.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

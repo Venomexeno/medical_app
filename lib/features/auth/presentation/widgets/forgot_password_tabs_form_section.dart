@@ -24,6 +24,12 @@ class _ForgotPasswordTabsFormSectionState
   late final TabController _tabController;
 
   @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _phoneController.dispose();
@@ -33,7 +39,6 @@ class _ForgotPasswordTabsFormSectionState
 
   @override
   Widget build(BuildContext context) {
-    _tabController = TabController(length: 2, vsync: this);
 
     return Column(
       children: [

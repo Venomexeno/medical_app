@@ -22,6 +22,12 @@ class _ScheduleCategoriesSectionState extends State<ScheduleCategoriesSection>
   late final TabController _tabController;
 
   @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
@@ -29,8 +35,6 @@ class _ScheduleCategoriesSectionState extends State<ScheduleCategoriesSection>
 
   @override
   Widget build(BuildContext context) {
-    _tabController = TabController(length: 3, vsync: this);
-
     return Column(
       children: [
         Container(
@@ -92,6 +96,3 @@ class _ScheduleCategoriesSectionState extends State<ScheduleCategoriesSection>
     );
   }
 }
-
-
-

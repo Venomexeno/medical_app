@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/services/services_locator.dart';
 import 'package:medical_app/features/auth/presentation/pages/create_new_password_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/login_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/verification_code_page.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/date_selector_cubit/date_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/time_selector_cubit/time_selector_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
@@ -64,9 +67,7 @@ class OnGenerateRoute {
           settings: settings,
           builder: (_) => BlocProvider<NavigationCubit>(
             create: (context) => NavigationCubit(),
-            child: RootPage(
-              uid: settings.arguments as String
-            ),
+            child: const RootPage(),
           ),
         );
 
@@ -90,7 +91,17 @@ class OnGenerateRoute {
 
       case AppRoutes.doctorDetailPageRoute:
         return MaterialPageRoute(
-          builder: (_) => const DoctorDetailPage(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<TimeSelectorCubit>(
+                create: (context) => sl<TimeSelectorCubit>(),
+              ),
+              BlocProvider<DateSelectorCubit>(
+                create: (context) => sl<DateSelectorCubit>(),
+              ),
+            ],
+            child: const DoctorDetailPage(),
+          ),
           settings: settings,
         );
 
