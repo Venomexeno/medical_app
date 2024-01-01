@@ -17,9 +17,8 @@ import 'package:medical_app/features/on_boarding/presentation/pages/on_boarding_
 import 'package:medical_app/features/online_pharmacy/presentation/pages/drugs_detail_page.dart';
 import 'package:medical_app/features/online_pharmacy/presentation/pages/my_cart_page.dart';
 import 'package:medical_app/features/online_pharmacy/presentation/pages/online_pharmacy_page.dart';
-
-import 'features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
-import 'features/home/presentation/controller/navigation_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
+import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
 
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
