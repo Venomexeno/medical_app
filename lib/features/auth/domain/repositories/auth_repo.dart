@@ -10,4 +10,8 @@ abstract class AuthRepo {
       SignInParameters parameters);
 
   Future<Either<Failure, SignUpEntity>> signUp(SignUpParameters parameters);
+
+  Future<Either<Failure, SignInEntity>> googleSignIn();
+
+  Future<Either<Failure, Unit>> logOut();
 }

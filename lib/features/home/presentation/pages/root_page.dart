@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/nav_bar_items.dart';
+import 'package:medical_app/core/functions/services_locator.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
 import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';

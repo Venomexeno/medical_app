@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
-import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/sign_in_cubit.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
@@ -75,25 +75,25 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
-            BlocConsumer<SignInCubit, SignInState>(
+            BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is SignInSuccess) {
+                if (state is Authenticated) {
                   Navigator.pushReplacementNamed(
                       context, AppRoutes.rootPageRoute);
-                } else if (state is SignInFailure) {
+                } else if (state is AuthenticationFailure) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(state.errMessage)));
                 }
               },
               builder: (context, state) {
-                if (state is SignInLoading) {
+                if (state is EmailAndPasswordAuthenticating) {
                   return const CircularProgressIndicator();
                 }
                 return CustomElevatedButtonWidget(
                   text: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      context.read<SignInCubit>().signIn(
+                      context.read<AuthCubit>().signIn(
                           _emailController.text, _passwordController.text);
                     } else {
                       print("UnSuccessful");
@@ -134,13 +134,28 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               ],
             ),
             const SizedBox(height: 24),
-            SocialSignInWidget(
-              onPressed: () {
-                Navigator.pushReplacementNamed(
-                    context, AppRoutes.rootPageRoute);
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is Authenticated) {
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.rootPageRoute);
+                } else if (state is AuthenticationFailure) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(state.errMessage)));
+                }
               },
-              text: 'Sign in with Google',
-              icon: 'assets/icons/Google.svg',
+              builder: (context, state) {
+                if (state is GoogleAuthenticating) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return SocialSignInWidget(
+                  onPressed: () {
+                    BlocProvider.of<AuthCubit>(context).googleSignIn();
+                  },
+                  text: 'Sign in with Google',
+                  icon: 'assets/icons/Google.svg',
+                );
+              },
             ),
             const SizedBox(height: 16),
             SocialSignInWidget(

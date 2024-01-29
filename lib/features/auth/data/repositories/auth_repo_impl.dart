@@ -29,11 +29,37 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
+  Future<Either<Failure, SignInEntity>> googleSignIn() async {
+    try {
+      final userCredential = await authRemoteDataSource.signInWithGoogle();
+      return right(userCredential);
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        return left(FirebaseFailure.fromAuth(e));
+      }
+      print(e.toString());
+      return left(Failure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, SignUpEntity>> signUp(
       SignUpParameters parameters) async {
     try {
       final userCredential = await authRemoteDataSource.signUp(parameters);
       return right(userCredential);
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        return left(FirebaseFailure.fromAuth(e));
+      }
+      return left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> logOut() async {
+    try {
+      return right(unit);
     } catch (e) {
       if (e is FirebaseAuthException) {
         return left(FirebaseFailure.fromAuth(e));

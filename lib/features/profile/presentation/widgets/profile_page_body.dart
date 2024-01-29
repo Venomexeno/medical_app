@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
-import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
 import 'package:medical_app/features/profile/presentation/widgets/profile_button_row.dart';
 
 class ProfilePageBody extends StatelessWidget {
@@ -103,14 +104,82 @@ class ProfilePageBody extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return CustomAlertDialogWidget(
-                              assetsIcon: 'assets/icons/Logout.svg',
-                              titleText:
-                                  'Are you sure to log out of your account ?',
-                              buttonText: 'Log Out',
-                              cancelButton: 'Cancel',
-                              onPressed: () {
-                              },
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.r)),
+                              content: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 18.5,
+                                  right: 18.5,
+                                  bottom: 38,
+                                  top: 60,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset('assets/icons/Logout.svg'),
+                                    const SizedBox(height: 40),
+                                    Text(
+                                      textAlign: TextAlign.center,
+                                      'Are you sure to log out of your account ?',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.sp,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    const SizedBox(height: 24),
+                                    BlocConsumer<AuthCubit, AuthState>(
+                                      listener: (context, state) {
+                                        if (state is UnAuthenticated) {
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              AppRoutes.loginPageRoute,
+                                              (route) => false);
+                                        } else if (state
+                                            is AuthenticationFailure) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                                  content:
+                                                      Text(state.errMessage)));
+                                        }
+                                      },
+                                      builder: (context, state) {
+                                        if (state is EmailAndPasswordAuthenticating) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                        return ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: AppColors.green,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40.r)),
+                                              minimumSize:
+                                                  Size.fromHeight(65.h)),
+                                          onPressed: () {
+                                            context.read<AuthCubit>().logOut();
+                                          },
+                                          child: const Text(
+                                            'Log Out',
+                                            style: TextStyle(
+                                                color: AppColors.white,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Cancel'),
+                                    )
+                                  ],
+                                ),
+                              ),
                             );
                           },
                         );

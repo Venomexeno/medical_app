@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/functions/services_locator.dart';
-import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/sign_in_cubit.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
 import 'package:medical_app/features/auth/presentation/controller/sign_up_cubit/sign_up_cubit.dart';
 import 'package:medical_app/features/auth/presentation/pages/create_new_password_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/forgot_password_page.dart';
@@ -36,21 +36,16 @@ class OnGenerateRoute {
 
       case AppRoutes.loginPageRoute:
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider<SignInCubit>(
-                create: (context) => sl<SignInCubit>(),
-                child: const LoginPage(),
-              ),
+          builder: (_) => const LoginPage(),
           settings: settings,
         );
 
       case AppRoutes.signUpPageRoute:
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider<SignUpCubit>(
-                create: (context) => sl<SignUpCubit>(),
-                child: const SignUpPage(),
-              ),
+          builder: (_) => BlocProvider<SignUpCubit>(
+            create: (context) => sl<SignUpCubit>(),
+            child: const SignUpPage(),
+          ),
           settings: settings,
         );
 
@@ -75,11 +70,17 @@ class OnGenerateRoute {
       case AppRoutes.rootPageRoute:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) =>
+          builder: (_) => MultiBlocProvider(
+            providers: [
               BlocProvider<NavigationCubit>(
                 create: (context) => NavigationCubit(),
-                child: const RootPage(),
               ),
+              BlocProvider<AuthCubit>(
+                create: (context) => sl<AuthCubit>(),
+              ),
+            ],
+            child: const RootPage(),
+          ),
         );
 
       case AppRoutes.homePageRoute:
@@ -102,18 +103,17 @@ class OnGenerateRoute {
 
       case AppRoutes.doctorDetailPageRoute:
         return MaterialPageRoute(
-          builder: (_) =>
-              MultiBlocProvider(
-                providers: [
-                  BlocProvider<TimeSelectorCubit>(
-                    create: (context) => sl<TimeSelectorCubit>(),
-                  ),
-                  BlocProvider<DateSelectorCubit>(
-                    create: (context) => sl<DateSelectorCubit>(),
-                  ),
-                ],
-                child: const DoctorDetailPage(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<TimeSelectorCubit>(
+                create: (context) => sl<TimeSelectorCubit>(),
               ),
+              BlocProvider<DateSelectorCubit>(
+                create: (context) => sl<DateSelectorCubit>(),
+              ),
+            ],
+            child: const DoctorDetailPage(),
+          ),
           settings: settings,
         );
 
