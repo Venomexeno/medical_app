@@ -57,9 +57,13 @@ class RootPage extends StatelessWidget {
                   label: 'Calendar',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset('assets/icons/Profile.svg'),
+                  icon: SvgPicture.asset(
+                    'assets/icons/Profile.svg',
+                    height: 25.h,
+                  ),
                   activeIcon: SvgPicture.asset(
                     'assets/icons/Profile.svg',
+                    height: 25.h,
                     colorFilter: const ColorFilter.mode(
                       AppColors.green,
                       BlendMode.srcIn,

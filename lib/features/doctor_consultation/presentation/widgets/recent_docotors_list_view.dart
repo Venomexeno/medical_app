@@ -10,7 +10,7 @@ class RecentDoctorsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110.h,
+      height: 115.h,
       child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,

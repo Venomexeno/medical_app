@@ -36,7 +36,7 @@ class RecentDoctorsListViewItem extends StatelessWidget {
           Text(
             'Dr. $name',
             style: TextStyle(
-              fontSize: 13.sp,
+              fontSize: 10.sp,
             ),
           ),
         ],

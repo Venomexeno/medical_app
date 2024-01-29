@@ -44,7 +44,7 @@ class MenuItemContainer extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 13.sp,
               color: const Color(0xffA1A8B0),
             ),
           ),

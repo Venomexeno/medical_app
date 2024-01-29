@@ -14,6 +14,20 @@ class HomePageBody extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final List<String> gridText = ['Doctor', 'Pharmacy', 'Hospital', 'Ambulance'];
+  final List<String> gridIcon = [
+    'assets/icons/Doctor.svg',
+    'assets/icons/Pharmacy.svg',
+    'assets/icons/Hospital.svg',
+    'assets/icons/Ambulance.svg',
+  ];
+  final List<String> gridNav = [
+    AppRoutes.findDoctorsPageRoute,
+    AppRoutes.onlinePharmacyPageRoute,
+    AppRoutes.findDoctorsPageRoute,
+    AppRoutes.onlinePharmacyPageRoute,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -43,41 +57,23 @@ class HomePageBody extends StatelessWidget {
                   semanticsLabelText: 'Search',
                 ),
                 const SizedBox(height: 20),
-                GridView.count(
-                  childAspectRatio: 103.w/103.h,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 4,
+                GridView.builder(
+                  itemCount: 4,
                   shrinkWrap: true,
-                  children: [
-                    MenuItemContainer(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                  ),
+                  itemBuilder: (context, index) {
+                    return MenuItemContainer(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, AppRoutes.findDoctorsPageRoute);
+                        Navigator.pushNamed(context, gridNav[index]);
                       },
-                      text: 'Doctor',
-                      icon: 'assets/icons/Doctor.svg',
-                    ),
-                    MenuItemContainer(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(AppRoutes.onlinePharmacyPageRoute);
-                      },
-                      text: 'Pharmacy',
-                      icon: 'assets/icons/Pharmacy.svg',
-                    ),
-                    MenuItemContainer(
-                      onPressed: () {},
-                      text: 'Hospital',
-                      icon: 'assets/icons/Hospital.svg',
-                    ),
-                    MenuItemContainer(
-                      onPressed: () {},
-                      text: 'Ambulance',
-                      icon: 'assets/icons/Ambulance.svg',
-                    ),
-                  ],
+                      text: gridText[index],
+                      icon: gridIcon[index],
+                    );
+                  },
                 ),
-                const SizedBox(height: 15),
                 const CustomBannerContainerWidget(
                   imageUrl: 'https://i.ibb.co/1XW6tMT/CTA.png',
                 ),
@@ -93,7 +89,8 @@ class HomePageBody extends StatelessWidget {
                 CustomSectionRowWidget(
                   name: 'Health article',
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.healthArticlePageRoute);
+                    Navigator.pushNamed(
+                        context, AppRoutes.healthArticlePageRoute);
                   },
                 ),
                 const SizedBox(height: 5),
@@ -106,4 +103,3 @@ class HomePageBody extends StatelessWidget {
     );
   }
 }
-

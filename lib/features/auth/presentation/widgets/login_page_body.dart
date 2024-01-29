@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/sign_in_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
@@ -73,13 +75,31 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
             const ForgotPasswordTextButtonWidget(),
             const SizedBox(height: 32),
-            CustomElevatedButtonWidget(
-              text: 'Login',
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                } else {
-                  print("UnSuccessful");
+            BlocConsumer<SignInCubit, SignInState>(
+              listener: (context, state) {
+                if (state is SignInSuccess) {
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.rootPageRoute);
+                } else if (state is SignInFailure) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(state.errMessage)));
                 }
+              },
+              builder: (context, state) {
+                if (state is SignInLoading) {
+                  return const CircularProgressIndicator();
+                }
+                return CustomElevatedButtonWidget(
+                  text: 'Login',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<SignInCubit>().signIn(
+                          _emailController.text, _passwordController.text);
+                    } else {
+                      print("UnSuccessful");
+                    }
+                  },
+                );
               },
             ),
             const SizedBox(height: 24),

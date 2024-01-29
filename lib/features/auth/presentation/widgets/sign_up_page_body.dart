@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/core/widgets/custom_alert_dialog_widget.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_up_cubit/sign_up_cubit.dart';
 import 'package:medical_app/features/auth/presentation/widgets/login_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_container_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/text_field_password_container_widget.dart';
@@ -89,14 +93,48 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               ),
             ),
             const SizedBox(height: 32),
-            CustomElevatedButtonWidget(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                } else {
-                  return;
+            BlocConsumer<SignUpCubit, SignUpState>(
+              listener: (context, state) {
+                if (state is SignUpSuccess) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CustomAlertDialogWidget(
+                        assetsIcon: 'assets/icons/Done.svg',
+                        titleText: 'Success',
+                        descriptionText:
+                            'Your account has been successfully registered',
+                        buttonText: 'Login',
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.loginPageRoute);
+                        },
+                      );
+                    },
+                  );
+                } else if (state is SignUpFailure) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(state.errMessage)));
                 }
               },
-              text: 'Sign Up',
+              builder: (context, state) {
+                if (state is SignUpLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return CustomElevatedButtonWidget(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<SignUpCubit>().signUp(
+                          _usernameController.text,
+                          _passwordController.text,
+                          _emailController.text);
+                    } else {
+                      return;
+                    }
+                  },
+                  text: 'Sign Up',
+                );
+              },
             ),
             const LoginTextButtonWidget()
           ],

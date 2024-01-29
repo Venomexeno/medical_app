@@ -4,7 +4,6 @@ import 'package:medical_app/features/doctor_consultation/presentation/manager/do
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/date_selector_list_view.dart';
 
 class DateSelectorListViewBlocBuilder extends StatelessWidget {
-
   const DateSelectorListViewBlocBuilder({super.key});
 
   @override
@@ -13,14 +12,12 @@ class DateSelectorListViewBlocBuilder extends StatelessWidget {
       builder: (context, date) {
         DateTime selectedDate = date;
 
-        // Calculate the start date based on the selected date
         DateTime startDate =
-        selectedDate.subtract(Duration(days: selectedDate.weekday - 1));
+            selectedDate.subtract(Duration(days: selectedDate.weekday - 1));
 
-        return DateSelectorListView(startDate: startDate, selectedDate: selectedDate);
+        return DateSelectorListView(
+            startDate: startDate, selectedDate: selectedDate);
       },
     );
   }
 }
-
-
