@@ -9,6 +9,7 @@ import 'package:text_scroll/text_scroll.dart';
 class RecommendedDoctors extends StatelessWidget {
   const RecommendedDoctors({
     super.key,
+    required this.uid,
     required this.imageUrl,
     required this.name,
     required this.specialization,
@@ -16,16 +17,18 @@ class RecommendedDoctors extends StatelessWidget {
     required this.distance,
   });
 
+  final String uid;
   final String imageUrl;
   final String name;
   final String specialization;
-  final double rating;
+  final num rating;
   final int distance;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print(uid);
         Navigator.of(context).pushNamed(AppRoutes.doctorDetailPageRoute);
       },
       child: Container(

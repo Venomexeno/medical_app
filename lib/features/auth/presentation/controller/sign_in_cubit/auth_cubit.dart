@@ -4,6 +4,7 @@ import 'package:medical_app/features/auth/domain/entities/sign_in_entity.dart';
 import 'package:medical_app/features/auth/domain/use_cases/sign_in_use_cases/google_sign_in_use_case.dart';
 import 'package:medical_app/features/auth/domain/use_cases/sign_in_use_cases/log_out_use_case.dart';
 import 'package:medical_app/features/auth/domain/use_cases/sign_in_use_cases/sign_in_use_case.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/loading_method.dart';
 
 part 'auth_state.dart';
 
@@ -17,8 +18,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._signInUseCase, this._logOutUseCase, this._googleSignInUseCase)
       : super(AuthInitial());
 
-  Future<void> signIn(String email, String password) async {
-    emit(EmailAndPasswordAuthenticating());
+  Future<void> signIn(String email, String password, ) async {
+    emit(const Authenticating(LoadingMethod.emailAndPassword));
     final result = await _signInUseCase(
       SignInParameters(
         email: email,
@@ -32,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> googleSignIn() async {
-    emit(GoogleAuthenticating());
+    emit(const Authenticating(LoadingMethod.google));
     final result = await _googleSignInUseCase();
     result.fold(
       (failure) => emit(AuthenticationFailure(failure.message)),
@@ -41,7 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logOut() async {
-    emit(EmailAndPasswordAuthenticating());
+    emit(const Authenticating(LoadingMethod.logOut));
     final result = await _logOutUseCase();
     result.fold(
       (failure) => emit(AuthenticationFailure(failure.message)),

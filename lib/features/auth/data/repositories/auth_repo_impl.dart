@@ -58,6 +58,7 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, Unit>> logOut() async {
+    await authRemoteDataSource.logOut();
     try {
       return right(unit);
     } catch (e) {

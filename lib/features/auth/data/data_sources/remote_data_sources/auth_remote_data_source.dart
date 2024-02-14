@@ -75,7 +75,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       email: parameters.email,
       password: parameters.password,
     );
-    _createNewUserInFireStore(email: parameters.email, name: parameters.name);
+    await _createNewUserInFireStore(email: parameters.email, name: parameters.name);
     return SignUpModel.fromFirebaseUser(response.user!);
   }
 
@@ -90,6 +90,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       final CollectionReference<Map<String, dynamic>> usersRef =
           FirebaseFirestore.instance.collection('users');
       usersRef.doc(uid).set({
+        'imageUrl': '',
         'uid': uid,
         'name': name,
         'email': email,

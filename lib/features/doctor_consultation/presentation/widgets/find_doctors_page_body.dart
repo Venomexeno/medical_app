@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/find_doctors_cubits/recent_doctors_cubit/recent_doctors_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/find_doctors_cubits/recommended_doctor_cubit/recommended_doctor_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/recent_docotors_list_view.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/widgets/recommended_doctors.dart';
 import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
@@ -105,13 +108,24 @@ class FindDoctorsPageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const RecommendedDoctors(
-                  name: 'Marcus Horizon',
-                  distance: 700,
-                  rating: 4.5,
-                  specialization: 'Chardiologist',
-                  imageUrl:
-                      'https://i.ibb.co/m9zqbpW/pexels-cedric-fauntleroy-4270371.png',
+                BlocBuilder<RecommendedDoctorCubit, RecommendedDoctorState>(
+                  builder: (context, state) {
+                    if (state is RecommendedDoctorSuccess) {
+                      return RecommendedDoctors(
+                        uid: state.recommendedDoctorEntity.uidEntity,
+                        name: state.recommendedDoctorEntity.nameEntity,
+                        distance: 700,
+                        rating: state.recommendedDoctorEntity.ratingEntity,
+                        specialization:
+                            state.recommendedDoctorEntity.specializationEntity,
+                        imageUrl: state.recommendedDoctorEntity.imageUrlEntity,
+                      );
+                    } else if (state is RecommendedDoctorFailure) {
+                      return Center(child: Text(state.errMessage));
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -123,7 +137,19 @@ class FindDoctorsPageBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const RecentDoctorsListView(),
+                BlocBuilder<RecentDoctorsCubit, RecentDoctorsState>(
+                  builder: (context, state) {
+                    if (state is RecentDoctorsSuccess) {
+                      return RecentDoctorsListView(
+                        recentDoctors: state.recentDoctors,
+                      );
+                    } else if (state is RecentDoctorsFailure) {
+                      return Text(state.errMessage);
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
               ],
             ),
           ),

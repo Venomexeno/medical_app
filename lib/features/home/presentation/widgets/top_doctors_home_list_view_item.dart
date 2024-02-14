@@ -2,27 +2,23 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
+import 'package:medical_app/features/home/domain/entities/home_top_doctor_entity.dart';
 import 'package:medical_app/features/home/presentation/widgets/rating_container.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class TopDoctorsHomeListViewItem extends StatelessWidget {
   const TopDoctorsHomeListViewItem({
     super.key,
-    required this.name,
-    required this.specialization,
-    required this.rating,
-    required this.imageUrl,
+    required this.homeTopDoctorEntity,
   });
 
-  final String imageUrl;
-  final String name;
-  final String specialization;
-  final double rating;
+  final HomeTopDoctorEntity homeTopDoctorEntity;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print(homeTopDoctorEntity.uidEntity);
         Navigator.pushNamed(context, AppRoutes.doctorDetailPageRoute);
       },
       child: Container(
@@ -38,7 +34,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CachedNetworkImage(
-              imageUrl: imageUrl,
+              imageUrl: homeTopDoctorEntity.imageUrlEntity,
               imageBuilder: (context, imageProvider) => Container(
                 width: 75.w,
                 height: 75.h,
@@ -57,7 +53,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
                 velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
                 mode: TextScrollMode.bouncing,
                 pauseBetween: const Duration(seconds: 5),
-                'Dr. $name',
+                'Dr. ${homeTopDoctorEntity.nameEntity}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: const Color(0xff555555),
@@ -72,7 +68,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
                 velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
                 mode: TextScrollMode.bouncing,
                 pauseBetween: const Duration(seconds: 5),
-                specialization,
+                homeTopDoctorEntity.specializationEntity,
                 style: TextStyle(
                   fontSize: 11.sp,
                   color: const Color(0xffADADAD),
@@ -80,7 +76,7 @@ class TopDoctorsHomeListViewItem extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            RatingContainer(rating: rating),
+            RatingContainer(rating: homeTopDoctorEntity.ratingEntity),
           ],
         ),
       ),

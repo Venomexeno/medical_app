@@ -9,12 +9,11 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
-class EmailAndPasswordAuthenticating extends AuthState {}
+class Authenticating extends AuthState {
+  final LoadingMethod loadingMethod;
 
-class GoogleAuthenticating extends AuthState {}
-
-class FacebookAuthenticating extends AuthState {}
-
+  const Authenticating(this.loadingMethod);
+}
 
 class Authenticated extends AuthState {
   final SignInEntity signInEntity;

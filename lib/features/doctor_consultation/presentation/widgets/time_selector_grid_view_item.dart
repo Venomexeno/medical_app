@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
-import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/time_selector_cubit/time_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/doctor_detail_cubit/time_selector_cubit/time_selector_cubit.dart';
+
 
 class TimeSelectorGridViewItem extends StatelessWidget {
   const TimeSelectorGridViewItem({

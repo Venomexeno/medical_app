@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
-import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/date_selector_cubit/date_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/doctor_detail_cubit/date_selector_cubit/date_selector_cubit.dart';
 
 class DateSelectorListViewItem extends StatelessWidget {
   const DateSelectorListViewItem({

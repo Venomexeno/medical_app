@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_elevated_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/loading_method.dart';
 import 'package:medical_app/features/auth/presentation/widgets/forgot_password_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/sign_up_text_button_widget.dart';
 import 'package:medical_app/features/auth/presentation/widgets/social_sign_in_widget.dart';
@@ -86,8 +87,10 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                 }
               },
               builder: (context, state) {
-                if (state is EmailAndPasswordAuthenticating) {
-                  return const CircularProgressIndicator();
+                if (state is Authenticating) {
+                  if (state.loadingMethod == LoadingMethod.emailAndPassword) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
                 }
                 return CustomElevatedButtonWidget(
                   text: 'Login',
@@ -145,8 +148,10 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                 }
               },
               builder: (context, state) {
-                if (state is GoogleAuthenticating) {
-                  return Center(child: CircularProgressIndicator());
+                if (state is Authenticating) {
+                  if (state.loadingMethod == LoadingMethod.google) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
                 }
                 return SocialSignInWidget(
                   onPressed: () {

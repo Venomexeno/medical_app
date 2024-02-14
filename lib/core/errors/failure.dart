@@ -25,6 +25,8 @@ class FirebaseFailure extends Failure {
         return FirebaseFailure('Please Enter an Valid email');
       case 'email-already-in-use':
         return FirebaseFailure('This email already in use');
+      case 'network-request-failed':
+        return FirebaseFailure('Please check your internet then try again');
 
       default:
         print(e.code);

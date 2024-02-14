@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
+import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/loading_method.dart';
+import 'package:medical_app/features/profile/presentation/controller/profile_info_cubit/profile_info_cubit.dart';
 import 'package:medical_app/features/profile/presentation/widgets/profile_button_row.dart';
 
 class ProfilePageBody extends StatelessWidget {
@@ -21,31 +23,44 @@ class ProfilePageBody extends StatelessWidget {
               height: 245.h,
               width: double.infinity,
               color: const Color(0xff45c3b8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: 'https://i.ibb.co/NLsLXZb/doctor2.jpg',
-                    imageBuilder: (context, imageProvider) => Container(
-                      width: 80.w,
-                      height: 80.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    'Amelia Renata',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
+              child: BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
+                builder: (context, state) {
+                  if (state is ProfileInfoSuccess) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CachedNetworkImage(
+                          imageUrl: state
+                                  .profileInfoEntity.imageUrlEntity.isEmpty
+                              ? 'https://firebasestorage.googleapis.com/v0/b/medical-app-624ed.appspot.com/o/users%2Fempty_profile_user.jpg?alt=media&token=937883e4-9b15-4699-ba15-41bd53f8bc97'
+                              : state.profileInfoEntity.imageUrlEntity,
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: 100.w,
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.fill),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          state.profileInfoEntity.nameEntity,
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      ],
+                    );
+                  } else if (state is ProfileInfoFailure) {
+                    return Center(child: Text(state.errMessage));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
             ),
             Positioned(
@@ -145,10 +160,13 @@ class ProfilePageBody extends StatelessWidget {
                                         }
                                       },
                                       builder: (context, state) {
-                                        if (state is EmailAndPasswordAuthenticating) {
-                                          return const Center(
-                                              child:
-                                                  CircularProgressIndicator());
+                                        if (state is Authenticating) {
+                                          if (state.loadingMethod ==
+                                              LoadingMethod.logOut) {
+                                            return const Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          }
                                         }
                                         return ElevatedButton(
                                           style: ElevatedButton.styleFrom(

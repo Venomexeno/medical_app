@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/app_routers.dart';
 import 'package:medical_app/core/widgets/custom_banner_container_widget.dart';
 import 'package:medical_app/core/widgets/custom_search_form_widget.dart';
+import 'package:medical_app/features/home/presentation/controller/home_cubits/home_top_doctors_cubit/home_top_doctors_cubit.dart';
 import 'package:medical_app/features/home/presentation/widgets/health_article_home_list_view.dart';
 import 'package:medical_app/features/home/presentation/widgets/menu_item_container.dart';
 import 'package:medical_app/core/widgets/custom_section_row_widget.dart';
@@ -84,7 +86,18 @@ class HomePageBody extends StatelessWidget {
                     Navigator.pushNamed(context, AppRoutes.topDoctorsPageRoute);
                   },
                 ),
-                const TopDoctorsHomeListView(),
+                BlocBuilder<HomeTopDoctorsCubit, HomeTopDoctorsState>(
+                  builder: (context, state) {
+                    if (state is HomeTopDoctorsSuccess) {
+                      return TopDoctorsHomeListView(
+                          homeTopDoctorEntity: state.homeTopDoctor);
+                    } else if (state is HomeTopDoctorsFailure) {
+                      return Center(child: Text(state.errMessage));
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
                 const SizedBox(height: 15),
                 CustomSectionRowWidget(
                   name: 'Health article',

@@ -8,7 +8,7 @@ class RatingContainer extends StatelessWidget {
     required this.rating,
   });
 
-  final double rating;
+  final num rating;
 
   @override
   Widget build(BuildContext context) {

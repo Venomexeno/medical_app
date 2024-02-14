@@ -6,15 +6,18 @@ class SignUpModel extends SignUpEntity {
   final String email;
   final String? name;
 
-  SignUpModel({required this.uid, required this.email, this.name})
-      : super(
+  const SignUpModel({
+    required this.uid,
+    required this.email,
+    this.name,
+  }) : super(
           uidEntity: uid,
           emailEntity: email,
           nameEntity: name,
         );
 
   factory SignUpModel.fromFirebaseUser(User user) => SignUpModel(
-      uid: user.uid,
-      email: user.email!,
-    );
+        uid: user.uid,
+        email: user.email!,
+      );
 }

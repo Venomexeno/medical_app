@@ -5,13 +5,13 @@ class NavigationState extends Equatable {
   final int index;
 
   const NavigationState(
-    this.navbarItem,
-    this.index,
-  );
+      this.navbarItem,
+      this.index,
+      );
 
   @override
   List<Object> get props => [
-        navbarItem,
-        index,
-      ];
+    navbarItem,
+    index,
+  ];
 }

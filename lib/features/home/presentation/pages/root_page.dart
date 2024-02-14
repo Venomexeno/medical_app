@@ -4,10 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/core/constants/app_colors.dart';
 import 'package:medical_app/core/constants/nav_bar_items.dart';
 import 'package:medical_app/core/functions/services_locator.dart';
-import 'package:medical_app/features/auth/presentation/controller/sign_in_cubit/auth_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
-import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
+import 'package:medical_app/features/home/presentation/controller/home_cubits/home_top_doctors_cubit/home_top_doctors_cubit.dart';
+import 'package:medical_app/features/home/presentation/controller/root_cubits/root_navigation_cubit/navigation_cubit.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
+import 'package:medical_app/features/profile/presentation/controller/profile_info_cubit/profile_info_cubit.dart';
 import 'package:medical_app/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -93,11 +94,18 @@ class RootPage extends StatelessWidget {
       body: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.home) {
-            return const HomePage();
+            return BlocProvider<HomeTopDoctorsCubit>(
+              create: (context) => sl<HomeTopDoctorsCubit>()..fetchTopDoctors(),
+              child: const HomePage(),
+            );
           } else if (state.navbarItem == NavbarItem.calendar) {
             return const SchedulePage();
           } else if (state.navbarItem == NavbarItem.profile) {
-            return const ProfilePage();
+            return BlocProvider<ProfileInfoCubit>(
+              create: (context) => sl<ProfileInfoCubit>()
+                ..fetchProfileInfo(uid: 'Kx4AH6SvSsMNUH4DUHEv1mGHdC02'),
+              child: const ProfilePage(),
+            );
           }
           return Container();
         },

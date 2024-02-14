@@ -9,11 +9,15 @@ import 'package:medical_app/features/auth/presentation/pages/forgot_password_pag
 import 'package:medical_app/features/auth/presentation/pages/login_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:medical_app/features/auth/presentation/pages/verification_code_page.dart';
-import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/date_selector_cubit/date_selector_cubit.dart';
-import 'package:medical_app/features/doctor_consultation/presentation/manager/doctor_detail_cubit/time_selector_cubit/time_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/doctor_detail_cubit/date_selector_cubit/date_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/doctor_detail_cubit/time_selector_cubit/time_selector_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/doctor_detail_cubit/update_recent_doctor_cubit/update_recent_doctor_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/find_doctors_cubits/recent_doctors_cubit/recent_doctors_cubit.dart';
+import 'package:medical_app/features/doctor_consultation/presentation/controller/find_doctors_cubits/recommended_doctor_cubit/recommended_doctor_cubit.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_detail_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/find_doctors_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/schedule_page.dart';
+import 'package:medical_app/features/home/presentation/controller/root_cubits/root_navigation_cubit/navigation_cubit.dart';
 import 'package:medical_app/features/home/presentation/pages/health_article_page.dart';
 import 'package:medical_app/features/home/presentation/pages/home_page.dart';
 import 'package:medical_app/features/home/presentation/pages/root_page.dart';
@@ -23,7 +27,6 @@ import 'package:medical_app/features/online_pharmacy/presentation/pages/drugs_de
 import 'package:medical_app/features/online_pharmacy/presentation/pages/my_cart_page.dart';
 import 'package:medical_app/features/online_pharmacy/presentation/pages/online_pharmacy_page.dart';
 import 'package:medical_app/features/doctor_consultation/presentation/pages/doctor_appointment_booking_page.dart';
-import 'package:medical_app/features/home/presentation/controller/navigation_cubit.dart';
 
 class OnGenerateRoute {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -97,7 +100,19 @@ class OnGenerateRoute {
 
       case AppRoutes.findDoctorsPageRoute:
         return MaterialPageRoute(
-          builder: (_) => const FindDoctorsPage(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<RecommendedDoctorCubit>(
+                create: (context) =>
+                    sl<RecommendedDoctorCubit>()..fetchRecommendedDoctor(),
+              ),
+              BlocProvider<RecentDoctorsCubit>(
+                create: (context) => sl<RecentDoctorsCubit>()
+                  ..fetchRecentDoctors(uid: 'Kx4AH6SvSsMNUH4DUHEv1mGHdC02'),
+              ),
+            ],
+            child: const FindDoctorsPage(),
+          ),
           settings: settings,
         );
 
@@ -110,6 +125,9 @@ class OnGenerateRoute {
               ),
               BlocProvider<DateSelectorCubit>(
                 create: (context) => sl<DateSelectorCubit>(),
+              ),
+              BlocProvider<UpdateRecentDoctorCubit>(
+                create: (context) => sl<UpdateRecentDoctorCubit>(),
               ),
             ],
             child: const DoctorDetailPage(),
